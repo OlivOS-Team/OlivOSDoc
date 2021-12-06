@@ -51,7 +51,7 @@ plugin_event.set_block()
 
 ### 撤回消息
 ```python
-plugin_event.delete_msg()
+plugin_event.delete_msg(message_id)
 ```
 
 #### 说明
@@ -59,5 +59,5 @@ plugin_event.delete_msg()
 
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
-| message_id | ID | 需要撤回的消息ID | True |
+| message_id | ID | 需要撤回的消息ID | - |
 
