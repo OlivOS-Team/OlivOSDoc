@@ -47,4 +47,4 @@ plugin_event.set_block()
 
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
-| enable | bool | 所需要发送的消息 | True |
+| enable | bool | 阻塞状态 | True |
