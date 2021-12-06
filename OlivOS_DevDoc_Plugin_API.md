@@ -48,3 +48,16 @@ plugin_event.set_block()
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
 | enable | bool | 阻塞状态 | True |
+
+### 撤回消息
+```python
+plugin_event.delete_msg()
+```
+
+#### 说明
+用于就此阻塞丢弃该消息事件而不传递给后续插件处理
+
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| message_id | ID | 需要撤回的消息ID | True |
+
