@@ -11,7 +11,7 @@
 |:--:|:--:|:---|:--:|
 | send_type | str | 用于指定发送目标的类型 | - |
 | target_id | ID | 发送目标的ID | - |
-| message | MSG | 用于指定发送目标的类型 | - |
+| message | MSG | 所需要发送的消息 | - |
 | host_id  | ID | 发送目标的所属HOST ID | None |
 
 - send_type
