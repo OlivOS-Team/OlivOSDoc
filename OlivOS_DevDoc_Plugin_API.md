@@ -39,7 +39,7 @@ plugin_event.reply(message)
 
 ### 阻塞后续插件
 ```python
-plugin_event.set_block(enable)
+plugin_event.set_block()
 ```
 
 #### 说明
@@ -47,4 +47,4 @@ plugin_event.set_block(enable)
 
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
-| message | MSG | 所需要发送的消息 | - |
+| enable | bool | 所需要发送的消息 | True |
