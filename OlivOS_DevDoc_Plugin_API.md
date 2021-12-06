@@ -4,6 +4,10 @@
 
 ### 发送消息
 
+```python
+plugin_event.send(send_type, target_id, message)
+```
+
 #### 说明
 用于发送基本消息
 
@@ -22,9 +26,24 @@
 | group | 群聊消息 |
 
 ### 回复消息
+```python
+plugin_event.reply(message)
+```
 
 #### 说明
 用于快速原路回复消息
+
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| message | MSG | 所需要发送的消息 | - |
+
+### 阻塞后续插件
+```python
+plugin_event.set_block(enable)
+```
+
+#### 说明
+用于就此阻塞丢弃该消息事件而不传递给后续插件处理
 
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
