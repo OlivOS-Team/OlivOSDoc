@@ -79,7 +79,7 @@ plugin_event.get_msg(message_id)
 |:--:|:--:|:---|:--:|
 | message_id | ID | 所查询的消息ID | None |
 | id | ID | 所查询的消息的实际ID | -1 |
-| sender | ID | 所查询的消息ID | - |
+| sender | SENDER | 所查询的消息ID | - |
 | time | ID | 所查询的消息的实际ID | -1 |
 | message | MSG | 消息内容 | None |
 | raw_message | MSG | 消息原生内容 | None |
@@ -98,3 +98,31 @@ plugin_event.send_like(user_id)
 |:--:|:--:|:---|:--:|
 | user_id | ID | 点赞对象ID | - |
 | times | int | 点赞次数 | 1 |
+
+### 踢出群成员
+```python
+plugin_event.set_group_kick(group_id, user_id)
+```
+用于踢出群成员
+
+#### 函数原型
+
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群对象ID | - |
+| user_id | ID | 群成员对象ID | - |
+| rehect_add_request | bool | 是否拉黑对象 | False |
+
+### 禁言群成员
+```python
+plugin_event.set_group_ban(group_id, user_id)
+```
+用于禁言群成员
+
+#### 函数原型
+
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群对象ID | - |
+| user_id | ID | 群成员对象ID | - |
+| duration | int | 禁言时长/秒 | 1800 |
