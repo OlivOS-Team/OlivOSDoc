@@ -7,9 +7,9 @@
 ```python
 plugin_event.send(send_type, target_id, message)
 ```
-
-#### 说明
 用于发送基本消息
+
+#### 函数原型
 
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
@@ -18,6 +18,7 @@ plugin_event.send(send_type, target_id, message)
 | message | MSG | 所需要发送的消息 | - |
 | host_id  | ID | 发送目标的所属HOST ID | None |
 
+#### 参数规范
 - send_type
 
 | 内容 | 解释 |
@@ -29,9 +30,9 @@ plugin_event.send(send_type, target_id, message)
 ```python
 plugin_event.reply(message)
 ```
-
-#### 说明
 用于快速原路回复消息
+
+#### 函数原型
 
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
@@ -41,9 +42,9 @@ plugin_event.reply(message)
 ```python
 plugin_event.set_block()
 ```
-
-#### 说明
 用于就此阻塞丢弃该消息事件而不传递给后续插件处理
+
+#### 函数原型
 
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
@@ -53,11 +54,47 @@ plugin_event.set_block()
 ```python
 plugin_event.delete_msg(message_id)
 ```
+用于撤回指定消息（以管理员权限）
 
-#### 说明
-用于就此阻塞丢弃该消息事件而不传递给后续插件处理
+#### 函数原型
 
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
 | message_id | ID | 需要撤回的消息ID | - |
 
+### 获取消息
+```python
+plugin_event.get_msg(message_id)
+```
+用于获取指定消息详情
+
+#### 函数原型
+
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| message_id | ID | 需要查询的消息ID | - |
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| message_id | ID | 所查询的消息ID | None |
+| id | ID | 所查询的消息的实际ID | -1 |
+| sender | ID | 所查询的消息ID | - |
+| time | ID | 所查询的消息的实际ID | -1 |
+| message | MSG | 消息内容 | None |
+| raw_message | MSG | 消息原生内容 | None |
+
+> 注：`message`与`raw_message`后续将会修改为`MSG`，当前为`str`
+
+### 发送赞
+```python
+plugin_event.send_like(user_id)
+```
+用于发送赞
+
+#### 函数原型
+
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| user_id | ID | 点赞对象ID | - |
+| times | int | 点赞次数 | 1 |
