@@ -150,8 +150,6 @@ plugin_event.set_group_whole_ban(group_id, enable)
 | group_id | ID | 群对象ID | - |
 | enable | bool | 禁言状态 | - |
 
-> 注：`duration`为`0`时表示解除禁言
-
 
 ### 设置群管理员
 ```python
