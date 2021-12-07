@@ -83,8 +83,8 @@ plugin_event.get_msg(message_id)
 |:--:|:--:|:---|:--:|
 | message_id | ID | 所查询的消息ID | None |
 | id | ID | 所查询的消息的实际ID | -1 |
-| sender | SENDER | 所查询的消息ID | - |
-| time | int | 所查询的消息的实际ID | -1 |
+| sender | SENDER | 发送者信息 | - |
+| time | int | 消息时间戳 | -1 |
 | message | MSG | 消息内容 | None |
 | raw_message | MSG | 消息原生内容 | None |
 
