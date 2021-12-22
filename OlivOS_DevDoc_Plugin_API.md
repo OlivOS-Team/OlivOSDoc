@@ -1,5 +1,53 @@
 # 插件
 
+## 基础类型
+
+### RES | 返回值
+
+当你调用一个插件接口时，如果这个插件接口存在返回值，则会返回这个类，否则则为`None`  
+当返回该类时，`data`将是该接口返回的具体业务数据，根据接口不同将会有所查别，以下的文档中各插件接口的`返回值`条目将会只列出其返回值分别对应的`data`条目的内容，但实际返回将是该类  
+`active`将在必要时表示返回值是否可信<br />可以理解为对于插件接口调用成功性的标志  
+其本身为`dict`类型  
+
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| active | bool | 插件接口调用成功性的标志 | False |
+| data | - | 该函数的具体返回值 | - |
+
+### ID | 身份索引
+
+独立的直接类型，可能为`int`或者`str`
+
+### USER | 用户
+
+`dict`类型，键值如下
+
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| name | str | 用户昵称 | None |
+| id | ID | 用户ID | -1 |
+
+### GROUP | 群组
+
+`dict`类型，键值如下
+
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| name | str | 群组名称 | None |
+| id | ID | 群组ID | -1 |
+| memo | str | 群组描述 | None |
+| max_member_count | ID | 群组人数上限 | -1 |
+
+### GROUPUSER | 群组用户
+
+`dict`类型，键值如下
+
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| name | str | 用户名称 | None |
+| id | ID | 用户ID | -1 |
+| group_id | ID | 群组ID | -1 |
+
 ## 插件接口
 
 ### 发送消息
@@ -83,7 +131,7 @@ plugin_event.get_msg(message_id)
 |:--:|:--:|:---|:--:|
 | message_id | ID | 所查询的消息ID | None |
 | id | ID | 所查询的消息的实际ID | -1 |
-| sender | SENDER | 发送者信息 | - |
+| sender | USER | 发送者信息 | - |
 | time | int | 消息时间戳 | -1 |
 | message | MSG | 消息内容 | None |
 | raw_message | MSG | 消息原生内容 | None |
@@ -262,3 +310,118 @@ plugin_event.set_group_add_request(flag, sub_type, approve, reason)
 |:--:|:--:|
 | add | 加群请求 |
 | invite | 加群邀请 |
+
+
+### 获取登录账号信息
+```python
+plugin_event.get_login_info()
+```
+用于获取登录账号信息
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| - | USER | 整个返回值为单个[USER](#USER)类型 | - |
+
+
+### 获取陌生人信息
+```python
+plugin_event.get_stranger_info(user_id)
+```
+用于获取陌生人信息
+
+#### 函数原型
+
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| user_id | ID | 陌生人对象ID | - |
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| - | USER | 整个返回值为单个[USER](#USER)类型 | - |
+
+
+### 获取好友列表
+```python
+plugin_event.get_friend_list()
+```
+用于获取好友列表
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| - | list | 整个返回值为[USER](#USER)类型的列表 | [] |
+
+
+### 获取群信息
+```python
+plugin_event.get_group_info()
+```
+用于获取群信息
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| - | GROUP | 整个返回值为[GROUP](#GROUP)类型 | - |
+
+
+### 获取群列表
+```python
+plugin_event.get_group_list()
+```
+用于获取群列表
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| - | list | 整个返回值为[GROUP](#GROUP)类型的列表 | [] |
+
+
+### 获取群成员信息
+```python
+plugin_event.get_group_member_info()
+```
+用于获取群信息
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| - | GROUPUSER | 整个返回值为[GROUPUSER](#GROUPUSER)类型 | - |
+
+
+### 获取群成员列表
+```python
+plugin_event.get_group_member_list()
+```
+用于获取群列表
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| - | list | 整个返回值为[GROUPUSER](#GROUPUSER)类型的列表 | [] |
+
+
+### 举例
+以下为一则在`私聊消息`事件中调用`获取陌生人信息`接口的例子
+```python
+#main.py
+class Event(object):
+    def private_message(plugin_event, Proc):
+        res = plugin_event.get_stranger_info(114514)
+        Proc.log(2, str(res))
+```
+则将会有如下日志输出
+```python
+[2021-12-22 01:28:12] - [INFO] - {'active': True, 'data': {'name': '野兽前辈', 'id': 114514}}
+```
+即为，返回值内容为：
+```python
+{
+    'active': True,
+    'data': {
+        'name': '野兽前辈',
+        'id': 114514
+    }
+}
+```
