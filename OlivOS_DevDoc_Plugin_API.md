@@ -402,7 +402,7 @@ plugin_event.get_group_member_list()
 | - | list | 整个返回值为[GROUPUSER](#GROUPUSER)类型的列表 | [] |
 
 
-### 举例
+## 举例
 以下为一则在`私聊消息`事件中调用`获取陌生人信息`接口的例子
 ```python
 #main.py
