@@ -321,7 +321,7 @@ plugin_event.get_login_info()
 #### 返回值
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
-| - | USER | 整个返回值为单个[USER](#USER)类型 | - |
+| - | USER | 整个返回值为单个[USER](#user--用户)类型 | - |
 
 
 ### 获取陌生人信息
@@ -339,7 +339,7 @@ plugin_event.get_stranger_info(user_id)
 #### 返回值
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
-| - | USER | 整个返回值为单个[USER](#USER)类型 | - |
+| - | USER | 整个返回值为单个[USER](#user--用户)类型 | - |
 
 
 ### 获取好友列表
@@ -351,7 +351,7 @@ plugin_event.get_friend_list()
 #### 返回值
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
-| - | list | 整个返回值为[USER](#USER)类型的列表 | [] |
+| - | list | 整个返回值为[USER](#user--用户)类型的列表 | [] |
 
 
 ### 获取群信息
@@ -363,7 +363,7 @@ plugin_event.get_group_info()
 #### 返回值
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
-| - | GROUP | 整个返回值为[GROUP](#GROUP)类型 | - |
+| - | GROUP | 整个返回值为[GROUP](#group--群组)类型 | - |
 
 
 ### 获取群列表
@@ -375,7 +375,7 @@ plugin_event.get_group_list()
 #### 返回值
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
-| - | list | 整个返回值为[GROUP](#GROUP)类型的列表 | [] |
+| - | list | 整个返回值为[GROUP](#group--群组)类型的列表 | [] |
 
 
 ### 获取群成员信息
@@ -387,7 +387,7 @@ plugin_event.get_group_member_info()
 #### 返回值
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
-| - | GROUPUSER | 整个返回值为[GROUPUSER](#GROUPUSER)类型 | - |
+| - | GROUPUSER | 整个返回值为[GROUPUSER](#groupuser--群组用户)类型 | - |
 
 
 ### 获取群成员列表
@@ -399,7 +399,7 @@ plugin_event.get_group_member_list()
 #### 返回值
 | 参数 | 类型 | 解释 | 缺省 |
 |:--:|:--:|:---|:--:|
-| - | list | 整个返回值为[GROUPUSER](#GROUPUSER)类型的列表 | [] |
+| - | list | 整个返回值为[GROUPUSER](#groupuser--群组用户)类型的列表 | [] |
 
 
 ## 举例
