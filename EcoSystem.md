@@ -1,8 +1,20 @@
 # 生态
 
+## 框架生态
+
+### 开发模板
+| 插件名称 | 说明 | 仓库地址 | 作者 |
+|:--:|:---|:---|:--:|
+| OlivOS插件模板 | 最初也是最基础的插件开发模板 | [OlivOS-Team/OlivOS-Plugin-Template](https://github.com/OlivOS-Team/OlivOS-Plugin-Template) | lunzhiPenxil |
+
+### 中间件
+| 插件名称 | 说明 | 仓库地址 | 作者 |
+|:--:|:---|:---|:--:|
+| OlivOS.nb2 | OlivOS面向nonebot2的兼容层 | [OlivOS-Team/OlivaDiceCore](https://github.com/nonepkg/OlivOS.nb2) | j1g5awi |
+
 ## 应用生态
 
-### 插件生态
+### 插件
 | 插件名称 | 命名空间 | 说明 | 仓库地址 | 作者 |
 |:--:|:--:|:---|:---|:--:|
 | OlivaDice核心模块 | OlivaDiceCore | 青果骰子核心模块 | [OlivOS-Team/OlivaDiceCore](https://github.com/OlivOS-Team/OlivaDiceCore) | lunzhiPenxil |
