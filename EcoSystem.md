@@ -10,7 +10,7 @@
 ### 中间件
 | 插件名称 | 说明 | 仓库地址 | 作者 |
 |:--:|:---|:---|:--:|
-| OlivOS.nb2 | OlivOS面向nonebot2的兼容层 | [OlivOS-Team/OlivaDiceCore](https://github.com/nonepkg/OlivOS.nb2) | j1g5awi |
+| OlivOS.nb2 | OlivOS面向nonebot2的兼容层 | [nonepkg/OlivOS.nb2](https://github.com/nonepkg/OlivOS.nb2) | j1g5awi |
 
 ## 应用生态
 
