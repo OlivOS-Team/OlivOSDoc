@@ -27,9 +27,54 @@
 ### 元事件
 
 #### 初始化事件
+
+##### 原型
 ```python
 class Event(object):
     def init(plugin_event, Proc):
         #plugin to do
         pass
 ```
+
+##### 描述
+该事件在会在当前插件完成`import`流程后立即被调用。  
+**这意味着其不会按照优先级顺序被调用。**
+
+##### 备注
+该事件中`plugin_event`当前只传递`None`
+
+
+#### 初始化后事件
+
+##### 原型
+```python
+class Event(object):
+    def init_after(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+##### 描述
+该事件在会在完成所有插件的`import`流程后立即被依次调用。  
+**这意味着其一定会按照优先级顺序被调用。**
+
+##### 备注
+该事件中`plugin_event`当前只传递`None`
+
+
+#### 存储事件
+
+##### 原型
+```python
+class Event(object):
+    def save(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+##### 描述
+该事件在会在插件加载器认为需要让插件执行存储操作时被调用，通常为插件即将被重载时。  
+**若为全局插件重载，则其一定会按照优先级顺序被调用。**
+
+##### 备注
+该事件中`plugin_event`当前只传递`None`
