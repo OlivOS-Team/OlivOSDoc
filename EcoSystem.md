@@ -3,19 +3,19 @@
 ## 框架生态
 
 ### 开发模板
-| 插件名称 | 说明 | 仓库地址 | 作者 |
+| 插件名称 | 说明 | 仓库地址 | 主导作者 |
 |:--:|:---|:---|:--:|
 | OlivOS插件模板 | 最初也是最基础的插件开发模板 | [OlivOS-Team/OlivOS-Plugin-Template](https://github.com/OlivOS-Team/OlivOS-Plugin-Template) | lunzhiPenxil |
 
 ### 中间件
-| 插件名称 | 说明 | 仓库地址 | 作者 |
+| 插件名称 | 说明 | 仓库地址 | 主导作者 |
 |:--:|:---|:---|:--:|
 | OlivOS.nb2 | OlivOS面向nonebot2的兼容层 | [nonepkg/OlivOS.nb2](https://github.com/nonepkg/OlivOS.nb2) | j1g5awi |
 
 ## 应用生态
 
 ### 插件
-| 插件名称 | 命名空间 | 说明 | 仓库地址 | 作者 |
+| 插件名称 | 命名空间 | 说明 | 仓库地址 | 主导作者 |
 |:--:|:--:|:---|:---|:--:|
 | OlivaDice核心模块 | OlivaDiceCore | 青果骰核心模块 | [OlivOS-Team/OlivaDiceCore](https://github.com/OlivOS-Team/OlivaDiceCore) | lunzhiPenxil |
 | OlivaDice娱乐模块 | OlivaDiceJoy | 青果骰娱乐模块 | [OlivOS-Team/OlivaDiceJoy](https://github.com/OlivOS-Team/OlivaDiceJoy) | lunzhiPenxil |
