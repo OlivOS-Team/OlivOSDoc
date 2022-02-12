@@ -16,6 +16,17 @@
 
 其中，`plugin_event`在一些事件中将固定传入`None`，这与这些事件的应用特性相关，例如`初始化事件`。其余场景下，`plugin_event.data`依照事件类型存在区别，将在每个事件的`数据`一栏具体说明。  
 
+同时，对于`plugin_event`类有如下成员
+| 成员 | 类型 | 解释 | 缺省 |
+|:---|:---|:---|:--:|
+| bot_info | OlivOS.API.bot_info_T | 机器人信息 | - |
+| platform | dict | 消息源平台信息 | - |
+| platform['sdk'] | str | 消息源平台实际平台<br/>例如`qq`、`telegram` | - |
+| platform['platform'] | str | 消息源所基于SDK<br/>例如`onebot`、`telegram_poll` | - |
+| platform['model'] | str | 消息源所基于模块模式<br/>例如`default` | - |
+| base_info | dict | 内容仅供内部使用，不推荐 | {} |
+| data | - | 此处略，以下详述 | - |
+
 #### 调用入口
 
 事件触发时将会尝试寻找插件命名空间下的`main.Event`中的相关方法。  
@@ -62,6 +73,8 @@ class Event(object):
         pass
 ```
 
+
+
 #### 描述
 该事件会在收到群聊消息、频道消息等多人聊天场景消息时被调用
 
@@ -78,6 +91,99 @@ class Event(object):
 | message_id | ID | 消息索引 | - |
 | raw_message | MSG | 依照插件所制定的类型转换后的消息源内容 | - |
 | raw_message_sdk | MSG | 由平台所接收的消息源格式 | - |
+
+
+
+## 通知事件
+
+### 群文件上传事件
+
+#### 原型
+```python
+class Event(object):
+    def group_file_upload(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+#### 描述
+该事件会在将文件上传至群聊、频道等多人聊天场景时被调用  
+
+#### 数据
+| 成员 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 发送群的索引 | - |
+| user_id | ID | 发送者的用户索引 | - |
+| file | dict | 文件信息 | - |
+| file['id'] | ID | 文件索引 | - |
+| file['name'] | str | 由平台所接收的消息格式 | - |
+| file['size'] | int | 文件大小 | - |
+| file['busid'] | int | 暂时无用 | - |
+
+### 群管理变更事件
+
+#### 原型
+```python
+class Event(object):
+    def group_admin(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+#### 描述
+该事件会在群聊、频道等多人聊天场景中管理员发生增减时被调用  
+
+#### 数据
+| 成员 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 发送群的索引 | - |
+| user_id | ID | 被操作者的用户索引 | - |
+| action | str | 表明动作<br/>`set`时表明新增群管理<br/>`unset`时表明移除群管理 | - |
+
+
+### 群成员减少事件
+
+#### 原型
+```python
+class Event(object):
+    def group_member_decrease(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+#### 描述
+该事件会在群聊、频道等多人聊天场景中群成员减少时被调用  
+
+#### 数据
+| 成员 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 发送群的索引 | - |
+| operator_id | ID | 操作者的用户索引 | - |
+| user_id | ID | 被操作者的用户索引 | - |
+| action | str | 表明动作<br/>`leave`时表明主动离开<br/>`kick`时表明被踢出<br/>`kick_me`时表明被踢出的是机器人本身 | - |
+
+
+### 群成员增加事件
+
+#### 原型
+```python
+class Event(object):
+    def group_member_increase(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+#### 描述
+该事件会在群聊、频道等多人聊天场景中群成员增加时被调用  
+
+#### 数据
+| 成员 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 发送群的索引 | - |
+| operator_id | ID | 操作者的用户索引 | - |
+| user_id | ID | 被操作者的用户索引 | - |
+| action | str | 表明动作<br/>`approve`时表明被同意放行加入<br/>`invite`时表明被邀请加入 | - |
+
 
 
 ## 元事件
