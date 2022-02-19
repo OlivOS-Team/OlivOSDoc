@@ -22,8 +22,8 @@
 |:---|:---|:---|:--:|
 | bot_info | OlivOS.API.bot_info_T | 机器人信息 | - |
 | platform | dict | 消息源平台信息 | - |
-| platform['sdk'] | str | 消息源平台实际平台<br/>例如`qq`、`telegram` | - |
-| platform['platform'] | str | 消息源所基于SDK<br/>例如`onebot`、`telegram_poll` | - |
+| platform['platform'] | str | 消息源平台实际平台<br/>例如`qq`、`telegram` | - |
+| platform['sdk'] | str | 消息源所基于SDK<br/>例如`onebot`、`telegram_poll` | - |
 | platform['model'] | str | 消息源所基于模块模式<br/>例如`default` | - |
 | base_info | dict | 内容仅供内部使用，不推荐 | {} |
 | data | - | 此处略，以下详述 | - |
