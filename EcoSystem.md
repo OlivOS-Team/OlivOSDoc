@@ -24,6 +24,7 @@
 | MC_Servestate | mc_servestate | 显示Minecraft服务器状态 | [Yorunina/MC_Servestate](https://github.com/Yorunina/MC_Servestate) | [Yorunina](https://github.com/Yorunina) |
 | OlivaBili | OlivaBilibiliPlugin | bilibili各类信息的解析和监控 | [Fishroud/OlivaBilibiliPlugin](https://github.com/Fishroud/OlivaBilibiliPlugin) | [Fishroud](https://github.com/Fishroud) |
 | OlivaNetMusic | OlivaNetMusic | 网易云音乐搜索 | [HideUsSaveUs/OlivaNetMusic](https://github.com/HideUsSaveUs/OlivaNetMusic) | [HideUsSaveUs](https://github.com/HideUsSaveUs) |
+| OlivaEmoji混合器 | OlivaEmojiKitchen | Emoji混合器 | [lunzhiPenxil/OlivaEmojiKitchen](https://github.com/lunzhiPenxil/OlivaEmojiKitchen) | [lunzhiPenxil](https://github.com/lunzhiPenxil) |
 
 ### 插件市场
 更多插件请移步[OlivOS论坛 - 插件市场](https://forum.olivos.run/t/plugin)
