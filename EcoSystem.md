@@ -25,6 +25,7 @@
 | OlivaBili | OlivaBilibiliPlugin | bilibili各类信息的解析和监控 | [Fishroud/OlivaBilibiliPlugin](https://github.com/Fishroud/OlivaBilibiliPlugin) | [Fishroud](https://github.com/Fishroud) |
 | OlivaNetMusic | OlivaNetMusic | 网易云音乐搜索 | [HideUsSaveUs/OlivaNetMusic](https://github.com/HideUsSaveUs/OlivaNetMusic) | [HideUsSaveUs](https://github.com/HideUsSaveUs) |
 | OlivaEmoji混合器 | OlivaEmojiKitchen | Emoji混合器 | [lunzhiPenxil/OlivaEmojiKitchen](https://github.com/lunzhiPenxil/OlivaEmojiKitchen) | [lunzhiPenxil](https://github.com/lunzhiPenxil) |
+| translator多语言翻译 | OlivaTranslator | translator多语言翻译 | [Fitz161/OlivaTranslator](https://github.com/Fitz161/OlivaTranslator) | [Fitz161](https://github.com/Fitz161) |
 
 ### 插件市场
 更多插件请移步[OlivOS论坛 - 插件市场](https://forum.olivos.run/t/plugin)
