@@ -17,6 +17,7 @@
 ### 插件
 | 插件名称 | 命名空间 | 说明 | 仓库地址 | 主导作者 |
 |:--:|:--:|:---|:---|:--:|
+| OlivOSOnebotV11协议端 | OlivOSOnebotV11 | OlivOSOnebotV11协议端 | [lunzhiPenxil/OlivOSOnebotV11](https://github.com/lunzhiPenxil/OlivOSOnebotV11) | [lunzhiPenxil](https://github.com/lunzhiPenxil) |
 | OlivaDice核心模块 | OlivaDiceCore | 青果骰核心模块 | [OlivOS-Team/OlivaDiceCore](https://github.com/OlivOS-Team/OlivaDiceCore) | [lunzhiPenxil](https://github.com/lunzhiPenxil) |
 | OlivaDice娱乐模块 | OlivaDiceJoy | 青果骰娱乐模块 | [OlivOS-Team/OlivaDiceJoy](https://github.com/OlivOS-Team/OlivaDiceJoy) | [lunzhiPenxil](https://github.com/lunzhiPenxil) |
 | OlivaDice日志模块 | OlivaDiceLogger | 青果骰日志模块 | [OlivOS-Team/OlivaDiceLogger](https://github.com/OlivOS-Team/OlivaDiceLogger) | [lunzhiPenxil](https://github.com/lunzhiPenxil) |
