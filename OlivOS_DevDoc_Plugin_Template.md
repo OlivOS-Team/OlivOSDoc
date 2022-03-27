@@ -13,9 +13,9 @@ OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同
 
 | 文件名称 | 功能 |
 |:--:|:---|
-| app.json | 自述文件 |
-| __init__.py | 加载入口 |
-| main.py | 事件回调入口 |
+| `app.json` | 自述文件 |
+| `__init__.py` | 加载入口 |
+| `main.py` | 事件回调入口 |
 
 ### 自述文件
 
