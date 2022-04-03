@@ -186,6 +186,199 @@ class Event(object):
 | action | str | 表明动作<br/>`approve`时表明被同意放行加入<br/>`invite`时表明被邀请加入 | - |
 
 
+### 群成员禁言事件
+
+#### 原型
+```python
+class Event(object):
+    def group_ban(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+#### 描述
+该事件会在群聊、频道等多人聊天场景中群成员被禁言时被调用  
+
+#### 数据
+| 成员 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 发送群的索引 | - |
+| operator_id | ID | 操作者的用户索引 | - |
+| user_id | ID | 被操作者的用户索引 | - |
+| duration | int | 被禁言的时长，`0`表示解除禁言 | - |
+
+
+### 好友添加事件
+
+#### 原型
+```python
+class Event(object):
+    def friend_add(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+#### 描述
+该事件会在有新好友被添加时被调用  
+
+#### 数据
+| 成员 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| user_id | ID | 该好友的用户索引 | - |
+
+
+### 群消息撤回事件
+
+#### 原型
+```python
+class Event(object):
+    def group_message_recall(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+#### 描述
+该事件会在有群消息被撤回时调用  
+
+#### 数据
+| 成员 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 该群索引 | - |
+| operator_id | ID | 操作者的用户索引 | - |
+| user_id | ID | 该用户的用户索引 | - |
+| message_id | ID | 被撤回的消息索引 | - |
+
+
+### 私聊消息撤回事件
+
+#### 原型
+```python
+class Event(object):
+    def private_message_recall(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+#### 描述
+该事件会在有私聊消息被撤回时调用  
+
+#### 数据
+| 成员 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| user_id | ID | 该用户的用户索引 | - |
+| message_id | ID | 被撤回的消息索引 | - |
+
+
+### 戳一戳事件
+
+#### 原型
+```python
+class Event(object):
+    def poke(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+#### 描述
+该事件会在有戳一戳发生时调用  
+
+#### 数据
+| 成员 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 该群索引，当发生在私聊中时为`None` | - |
+| user_id | ID | 操作者的用户索引 | - |
+| target_id | ID | 被操作者的用户索引 | - |
+
+
+### 群荣誉变更事件
+
+#### 原型
+```python
+class Event(object):
+    def group_honor(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+#### 描述
+该事件会在有群成员的荣誉发生变化时调用  
+
+#### 数据
+| 成员 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 该群索引，当发生在私聊中时为`None` | - |
+| user_id | ID | 操作者的用户索引 | - |
+| type | str | `talkative`、`performer`、`emotion`<br/>分别对应龙王、群聊之火、快乐源泉 | - |
+
+
+## 请求事件
+
+
+### 好友添加请求事件
+
+#### 原型
+```python
+class Event(object):
+    def friend_add_request(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+#### 描述
+该事件会在有加好友请求时调用  
+
+#### 数据
+| 成员 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| user_id | ID | 用户索引 | - |
+| comment | str | 验证信息 | - |
+| flag | str | 请求 flag，在调用处理请求的 API 时需要传入 | - |
+
+
+### 加群请求事件
+
+#### 原型
+```python
+class Event(object):
+    def group_add_request(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+#### 描述
+该事件会在有加群请求时调用  
+
+#### 数据
+| 成员 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 该群索引 | - |
+| user_id | ID | 用户索引 | - |
+| comment | str | 验证信息 | - |
+| flag | str | 请求 flag，在调用处理请求的 API 时需要传入 | - |
+
+
+### 加群邀请事件
+
+#### 原型
+```python
+class Event(object):
+    def group_invite_request(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+#### 描述
+该事件会在有加群邀请时调用  
+
+#### 数据
+| 成员 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 该群索引 | - |
+| user_id | ID | 用户索引 | - |
+| comment | str | 验证信息 | - |
+| flag | str | 请求 flag，在调用处理请求的 API 时需要传入 | - |
+
+
 
 ## 元事件
 这些事件中`plugin_event`当前只传递`None`
