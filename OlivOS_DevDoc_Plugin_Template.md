@@ -81,6 +81,6 @@ OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同
 
 ### 插件打包发布格式 | OPK（OlivOS Plugin Package）
 
-OPK（OlivOS Plugin Package）是一种由仑质提出的，适用于OlivOS的单文件插件格式，其本质是源码状态的OlivOS插件目录的**zip**格式压缩包。  
+OPK（OlivOS Plugin Package）是一种由仑质提出的，适用于OlivOS的单文件插件格式，其本质是源码状态的OlivOS插件目录的**zip**格式压缩包，并在完成压缩后修改后缀名`.zip`为`.opk`，这是一种通用的打包形式，参考了`Office`与`Java`等项目的设计。  
 其详细打包过程请参考[OlivOS插件模板的CI过程](https://github.com/OlivOS-Team/OlivOSPluginTemplate/blob/main/.github/workflows/ci.yml)。
 
