@@ -78,3 +78,9 @@ OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同
 
 该文件提供了插件命名空间下的`main`空间，这是插件后续业务加载所需的主要空间，详情请参考[框架事件综述](OlivOS_DevDoc_Event.md)
 
+
+### 插件打包发布格式 | OPK（OlivOS Plugin Package）
+
+OPK（OlivOS Plugin Package）是一种由仑质提出的，适用于OlivOS的单文件插件格式，其本质是源码状态的OlivOS插件目录的**zip**格式压缩包。  
+其详细打包过程请参考[OlivOS插件模板的CI过程](https://github.com/OlivOS-Team/OlivOSPluginTemplate/blob/main/.github/workflows/ci.yml)。
+
