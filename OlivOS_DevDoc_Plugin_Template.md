@@ -4,7 +4,7 @@
 
 ### 综述
 
-请配合[插件模板]([app.json](https://github.com/OlivOS-Team/OlivOSPluginTemplate)进行阅读
+请配合[插件模板]([app.json](https://github.com/OlivOS-Team/OlivOSPluginTemplate))进行阅读
 
 OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同级的命名空间，命名空间之间符合Python的覆盖机制，这意味着你可以对其他插件甚至OlivOS自身进行注入式开发。
 
