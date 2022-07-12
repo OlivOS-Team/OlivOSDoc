@@ -1,0 +1,33 @@
+site_name: OlivOS官方文档
+nav:
+  - 概述: README.md
+  - 生态: EcoSystem.md
+  - 开发文档:
+    - 插件模板: OlivOS_DevDoc_Plugin_Template.md
+    - 框架事件: OlivOS_DevDoc_Event.md
+    - 插件接口: OlivOS_DevDoc_Plugin_API.md
+
+theme:
+  logo: assets/logo.png
+  favicon: assets/favicon.png
+  name: material
+  language: zh
+  features:
+    - navigation.instant
+    - navigation.tabs
+    #- navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.expand
+plugins:
+  - search:
+      lang: 
+        - jp
+        - en
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
