@@ -1,12 +1,4 @@
 site_name: OlivOS官方文档
-nav:
-  - 概述: README.md
-  - 开发:
-    - 插件模板: OlivOS_DevDoc_Plugin_Template.md
-    - 框架事件: OlivOS_DevDoc_Event.md
-    - 插件接口: OlivOS_DevDoc_Plugin_API.md
-  - 生态: EcoSystem.md
-
 repo_name: OlivOS-Team/OlivOS
 repo_url: https://github.com/OlivOS-Team/OlivOS
 
@@ -27,12 +19,20 @@ theme:
     - navigation.expand
 plugins:
   - search:
-      lang: 
-        - jp
-        - en
+      lang: jp
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - 概述: README.md
+  - 开发:
+    - 插件模板: OlivOS_DevDoc_Plugin_Template.md
+    - 框架事件: OlivOS_DevDoc_Event.md
+    - 插件接口: OlivOS_DevDoc_Plugin_API.md
+  - 生态: EcoSystem.md
