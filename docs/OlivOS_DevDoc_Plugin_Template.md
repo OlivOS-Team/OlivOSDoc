@@ -13,7 +13,7 @@ OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同
 
 | 文件名称 | 功能 |
 |:--:|:---|
-| `app.json` | 自述文件 |
+| `app.json` | 自述文件，编码应当为`UTF-8` |
 | `__init__.py` | 加载入口 |
 | `main.py` | 事件回调入口 |
 
@@ -28,9 +28,10 @@ OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同
     "name" : "OlivOS插件默认模板",
     "author" : "OlivOS-Team",
     "namespace" : "OlivOSPluginTemplate",
+    "info" : "这是OlivOS官方插件模板，而这是一条有关插件的简介。",
     "priority" : 30000,
     "svn" : 1,
-    "compatible_svn" : 94,
+    "compatible_svn" : 100,
     "message_mode" : "olivos_string",
     "support" : [
         {
@@ -43,6 +44,16 @@ OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同
             "platform" : "all",
             "model" : "all"
         }
+    ],
+    "menu_config": [
+        {
+            "title": "插件菜单1",
+            "event": "OlivOSPluginTemplate_Menu_001"
+        },
+        {
+            "title": "插件菜单2",
+            "event": "OlivOSPluginTemplate_Menu_002"
+        }
     ]
 }
 ```
@@ -53,20 +64,31 @@ OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同
 |:--:|:--:|:---|
 | name | string | 插件名称 |
 | author | string | 插件作者 |
+| info | string | 插件的简要说明 |
 | namespace | string | 命名空间 |
 | priority | number(int) | 优先级，值越小等级越高 |
 | svn | number(int) | 版本号<br/>由插件自行递增 |
 | compatible_svn | number(int) | 插件接口版本号<br/>表明了当前插件基于哪个版本的OlivOS设计 |
 | message_mode | string | 插件消息模式 |
 | support | list | 插件支持平台开关 |
+| menu_config | list | 插件菜单注册表 |
 
-`support`字段中包含的结构体应当包含如下
+`support`字段中包含的结构体应当包含如下  
 
 | 文件名称 | 类型 | 描述 |
 |:--:|:--:|:---|
 | sdk | string | 插件平台SDK |
 | platform | string | 插件平台 |
 | model | string | 插件平台模式 |
+
+其中，`all`字段表示该字段可以被忽略。  
+
+`menu_config`字段中包含的结构体应当包含如下  
+
+| 文件名称 | 类型 | 描述 |
+|:--:|:--:|:---|
+| title | string | 菜单条目标题 |
+| event | string | 菜单插件事件字段 |
 
 
 ### 加载入口
