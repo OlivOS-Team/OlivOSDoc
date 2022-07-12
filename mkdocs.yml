@@ -7,9 +7,14 @@ nav:
     - 插件接口: OlivOS_DevDoc_Plugin_API.md
   - 生态: EcoSystem.md
 
+repo_name: OlivOS-Team/OlivOS
+repo_url: https://github.com/OlivOS-Team/OlivOS
+
 theme:
   logo: assets/logo.png
   favicon: assets/favicon.png
+  icon:
+    repo: fontawesome/brands/github
   name: material
   language: zh
   features:
