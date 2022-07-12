@@ -1,6 +1,7 @@
 site_name: OlivOS官方文档
 repo_name: OlivOS-Team/OlivOS
 repo_url: https://github.com/OlivOS-Team/OlivOS
+edit_uri: ""
 
 theme:
   logo: assets/logo.png
