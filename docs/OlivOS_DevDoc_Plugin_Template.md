@@ -73,6 +73,7 @@ OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同
 | support | list | 插件支持平台开关 |
 | menu_config | list | 插件菜单注册表 |
 
+#### 平台开关
 `support`字段中包含的结构体应当包含如下  
 
 | 文件名称 | 类型 | 描述 |
@@ -83,6 +84,7 @@ OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同
 
 其中，`all`字段表示该字段可以被忽略。  
 
+#### 菜单注册表
 `menu_config`字段中包含的结构体应当包含如下  
 
 | 文件名称 | 类型 | 描述 |
