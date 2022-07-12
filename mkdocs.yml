@@ -1,11 +1,11 @@
 site_name: OlivOS官方文档
 nav:
   - 概述: README.md
-  - 生态: EcoSystem.md
-  - 开发文档:
+  - 开发:
     - 插件模板: OlivOS_DevDoc_Plugin_Template.md
     - 框架事件: OlivOS_DevDoc_Event.md
     - 插件接口: OlivOS_DevDoc_Plugin_API.md
+  - 生态: EcoSystem.md
 
 theme:
   logo: assets/logo.png
