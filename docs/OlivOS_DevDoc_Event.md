@@ -381,7 +381,7 @@ class Event(object):
 
 
 ## 元事件
-这些事件中`plugin_event`当前只传递`None`
+这些事件中`plugin_event`未说明的默认只传递`None`
 
 
 ### 初始化事件
@@ -428,3 +428,25 @@ class Event(object):
 该事件在会在插件加载器认为需要让插件执行存储操作时被调用，通常为插件即将被重载时。  
 **若为全局插件重载，则其一定会按照优先级顺序被调用。**
 
+
+### 菜单事件
+
+#### 原型
+```python
+class Event(object):
+    def menu(plugin_event, Proc):
+        #plugin to do
+        pass
+```
+
+#### 描述
+该事件在会在插件的菜单被点击时调用。  
+需要注意的是，该事件的`plugin_event.bot_info`为`None`。
+
+#### 数据
+| 成员 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| namespace | str | 触发菜单的插件命名空间 | - |
+| event | str | 触发菜单的插件事件字段 | - |
+
+**若为全局插件重载，则其一定会按照优先级顺序被调用。**
