@@ -31,11 +31,17 @@ extra_css:
   - stylesheets/extra.css
 
 nav:
-  - 概述: README.md
+  - 概述:
+    - 概述: README.md
   - 开发:
-    - 插件模板: OlivOS_DevDoc_Plugin_Template.md
-    - 框架事件: OlivOS_DevDoc_Event.md
-    - 插件接口: OlivOS_DevDoc_Plugin_API.md
+    - 插件开发:
+      - 插件模板: OlivOS_DevDoc_Plugin_Template.md
+      - 框架事件: OlivOS_DevDoc_Event.md
+      - 插件接口: OlivOS_DevDoc_Plugin_API.md
+    - 原理: 
+      - 技术选型: OlivOS_DevDoc_Technology.md
+      #- 产品模型
+      #- 实现细节
   - 生态: EcoSystem.md
   - 论坛: https://forum.olivos.run
   - 捐助: https://afdian.net/@OlivOS
