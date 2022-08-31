@@ -14,6 +14,7 @@
 | plugin_event | OlivOS.API.Event | 应用相关事件的主要数据获取和与接口交互对象 | None |
 | Proc | OlivOS.pluginAPI.shallow | 当前插件所处的插件托盘组件 | - |
 
+##### plugin_event
 其中，`plugin_event`在一些事件中将固定传入`None`，这与这些事件的应用特性相关，例如`初始化事件`。其余场景下，`plugin_event.data`依照事件类型存在区别，将在每个事件的`数据`一栏具体说明。  
 
 同时，对于`plugin_event`类有如下成员  
@@ -27,6 +28,17 @@
 | platform['model'] | str | 消息源所基于模块模式<br/>例如`default` | - |
 | base_info | dict | 内容仅供内部使用，不推荐 | {} |
 | data | - | 此处略，以下详述 | - |
+
+##### Proc
+`Proc`传入的是整个插件加载器的进程对象，通常情况下它在插件的整个生命周期中都不会发生改变，所以你大可以将其赋值到插件内的某个全局变量上以确保随时可以使用，有一些常用参数是你可以用到的：
+
+| 成员 | 类型 | 解释 | 缺省 |
+|:---|:---|:---|:--:|
+| Proc_data | dict | 进程数据信息 | - |
+| Proc_data['bot_info_dict'] | list | 登录账号信息<br/>其中key为bot的hash<br/>value为类型为OlivOS.API.bot_info_T的机器人信息 | - |
+
+调用接口请参考[插件接口 -> 进程接口](/OlivOS_DevDoc_Plugin_API/#_3)章节。
+
 
 #### 调用入口
 

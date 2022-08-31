@@ -48,6 +48,20 @@
 | id | ID | 用户ID | -1 |
 | group_id | ID | 群组ID | -1 |
 
+## 进程接口
+
+### 重载插件
+```python
+Proc.set_restart()
+```
+`Proc.set_restart()`接口可以重启整个插件加载器，并重新加载整个插件。
+
+### 插件列表
+```python
+Proc.get_plugin_list()
+```
+`Proc.get_plugin_list()`接口可以获得一个由插件的`namespace`填充的`list`，这可以让你知道当前的`OlivOS`上存在哪些插件。
+
 ## 插件接口
 
 ### 发送消息
