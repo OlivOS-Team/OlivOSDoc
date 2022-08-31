@@ -38,6 +38,7 @@ nav:
       - 插件模板: OlivOS_DevDoc_Plugin_Template.md
       - 框架事件: OlivOS_DevDoc_Event.md
       - 插件接口: OlivOS_DevDoc_Plugin_API.md
+      - 开发技巧: OlivOS_DevDoc_Note.md
     - 原理: 
       - 技术选型: OlivOS_DevDoc_Technology.md
       #- 产品模型
