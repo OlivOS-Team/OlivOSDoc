@@ -19,18 +19,18 @@ jobs:
           python-version: 3.x
       - run: pip install mkdocs
       - run: pip install mkdocs-material
-      - run: pip install git+https://github.com/fmaida/hello-dolly-mkdocs-plugin
-      - run: pip install git+https://github.com/srymh/MkdocsTagPlugin
-      - run: pip install git+https://github.com/jldiaz/mkdocs-plugin-tags.git
-      - run: pip install mkdocs-git-revision-date-plugin
-      - run: pip install mkdocs-git-authors-plugin
-      - run: pip install mkdocs-rss-plugin
-      - run: pip install mkdocs-print-site-plugin
-      - run: pip install mkdocs-tooltips
-      - run: pip install mkdocs-categories-plugin
-      - run: pip install mkdocs-git-show-history-log-plugin
-      - run: pip install mkdocs-video
-      - run: pip install mkdocs-izsam-video
+#       - run: pip install git+https://github.com/fmaida/hello-dolly-mkdocs-plugin
+#       - run: pip install git+https://github.com/srymh/MkdocsTagPlugin
+#       - run: pip install git+https://github.com/jldiaz/mkdocs-plugin-tags.git
+#       - run: pip install mkdocs-git-revision-date-plugin
+#       - run: pip install mkdocs-git-authors-plugin
+#       - run: pip install mkdocs-rss-plugin
+#       - run: pip install mkdocs-print-site-plugin
+#       - run: pip install mkdocs-tooltips
+#       - run: pip install mkdocs-categories-plugin
+#       - run: pip install mkdocs-git-show-history-log-plugin
+#       - run: pip install mkdocs-video
+#       - run: pip install mkdocs-izsam-video
       - run: mkdocs gh-deploy --force
       # git push -f git@github.com:cypress0522/ssJSKFJDJ.git gh-pages
       # mkdocs gh-deploy --force
