@@ -46,15 +46,14 @@ extra_css:
   - stylesheets/extra.css
 
 nav:
-  - 概述:
-    - 概述: README.md
-  - 开发:
+  - 开发手册:
+    - 开发手册: README.md
     - 插件开发:
       - 插件模板: OlivOS_DevDoc_Plugin_Template.md
       - 框架事件: OlivOS_DevDoc_Event.md
       - 插件接口: OlivOS_DevDoc_Plugin_API.md
       - 开发技巧: OlivOS_DevDoc_Note.md
-    - 原理:
+    - 实现原理:
       - 开源协议: OlivOS_DevDoc_Open_Source.md
       - 技术选型: OlivOS_DevDoc_Technology.md
       #- 产品模型
