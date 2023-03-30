@@ -90,7 +90,7 @@ if __name__ == '__main__':
 ```
 
 ## 插件
-请参考插件默认模板[OlivOSPluginTemplate](https://github.com/OlivOS-Team/OlivOSPluginTemplate)进行插件开发
+请参考插件默认模板[OlivOSPluginTemplate](https://github.com/OlivOS-Team/OlivOSPluginTemplate)和[官方文档](https://doc.olivos.wiki)进行插件开发。
 
 ## 许可证
 
