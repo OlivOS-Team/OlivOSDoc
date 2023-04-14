@@ -16,6 +16,7 @@ OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同
 | `app.json` | 自述文件，编码应当为`UTF-8` |
 | `__init__.py` | 加载入口 |
 | `main.py` | 事件回调入口 |
+| `data` | 资源文件目录 |
 
 ### 自述文件
 
@@ -102,6 +103,9 @@ OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同
 
 该文件提供了插件命名空间下的`main`空间，这是插件后续业务加载所需的主要空间，详情请参考[框架事件综述](OlivOS_DevDoc_Event.md)
 
+### 资源文件目录
+
+该目录是一个允许你在打包时包含资源文件的设计，在插件内部的目录下的`data`目录中的内容将会在`init`与`init_after`事件之间被整体复制到`plugin/data/命名空间/data`目录下，而不需要开发者额外的编写释放资源文件的代码。
 
 ### 插件打包发布格式 | OPK（OlivOS Plugin Package）
 
