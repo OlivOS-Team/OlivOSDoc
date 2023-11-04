@@ -4,6 +4,7 @@ repo_url: https://github.com/OlivOS-Team/OlivOS
 edit_uri: ""
 
 theme:
+  custom_dir: docs/overrides
   palette:
     - scheme: default
       primary: indigo
@@ -46,8 +47,9 @@ extra_css:
   - stylesheets/extra.css
 
 nav:
+  - 首页: index.md
   - 开发手册:
-    - 开发手册: README.md
+    - 开发手册: OlivOS_README.md
     - 插件开发:
       - 插件模板: OlivOS_DevDoc_Plugin_Template.md
       - 框架事件: OlivOS_DevDoc_Event.md
