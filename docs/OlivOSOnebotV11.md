@@ -17,7 +17,7 @@ Onebot V11 for OlivOS
 
 ### 开始使用
 #### Github页面
-[lunzhiPenxil/OlivOSOnebotV11](https://github.com/lunzhiPenxil/OlivOSOnebotV11)
++ [lunzhiPenxil/OlivOSOnebotV11](https://github.com/lunzhiPenxil/OlivOSOnebotV11)
 
 #### 论坛页面
-[OneBotV11协议端](https://forum.olivos.run/d/90)
++ [OneBotV11协议端](https://forum.olivos.run/d/90)
