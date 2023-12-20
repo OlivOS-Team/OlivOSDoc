@@ -114,7 +114,7 @@ if __name__ == '__main__':
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-`OlivOS` 采用 `AGPLv3` 协议开源。为了整个社区的良性发展，我们**强烈建议**您做到以下几点：
+`OlivOS` 采用 `AGPLv3` 协议开源。为了整个社区的良性发展，我们**强烈建议**您做到以下几点（此声明继承自[Mirai](https://github.com/mamoe/mirai)）：
 
 - **间接接触（包括但不限于使用 `Http API` 或 跨进程技术）到 `OlivOS` 的软件使用 `AGPLv3` 开源**
 
