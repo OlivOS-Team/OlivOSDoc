@@ -357,3 +357,91 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 | password | 填写从米游社官方获取的Secret |
 | server.access_token | 填写从米游社官方获取的Pub_Key |
 | server.port | 机器人所应用的别野号<br/>只有沙盒模式下需要填写特定别野号<br/>上架后可以填写为`0` |
+
+
+### B站直播间
+这种连接方式对接了B站直播间的弹幕系统。  
+`B站直播间/游客`将会以游客方式对接，这种方式下将会只能浏览弹幕，不能发送消息。  
+`B站直播间/登录`将会进行二维码登录，这种方式可以正常发送消息，但由于弹幕20字数的限制，将会把消息分割发送。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "biliLive" |
+| sdk_type | "biliLive_link" |
+| model_type | 详见可变配置 |
+| server.auto | true |
+| server.type | "websocket" |
+
+**可变配置**
+
+| 账号类型 | model_type |
+|:---|:---|
+| B站直播间/游客 | "default" |
+| B站直播间/登录 | "login" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| server.access_token | 填写所要对接的直播间ID |
+
+
+### QQ官方/V1
+这种连接方式对接了QQ官方的开放平台机器人接口。  
+所采用的机器人接口为V1版本，这种接口已经被官方升级为V2，但由于其向下兼容性较好，仍然可以使用，所以仍然保留。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "qqGuild" |
+| sdk_type | "qqGuild_link" |
+| model_type | 详见可变配置 |
+| server.auto | true |
+| server.type | "websocket" |
+
+**可变配置**
+
+| 账号类型 | model_type |
+|:---|:---|
+| QQ官方/公域/V1 | "public" |
+| QQ官方/私域/V1 | "private" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 填写从QQ官方获取的AppID |
+| server.access_token | 填写从QQ官方获取的机器人令牌 |
+
+
+### QQ官方/V2
+这种连接方式对接了QQ官方的开放平台机器人接口。  
+所采用的机器人接口为V2版本，一些新的功能例如`QQ群官方机器人`需要这个版本的接口对接。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "qqGuild" |
+| sdk_type | "qqGuildv2_link" |
+| model_type | 详见可变配置 |
+| server.auto | true |
+| server.type | "websocket" |
+
+**可变配置**
+
+| 账号类型 | model_type |
+|:---|:---|
+| QQ官方/公域/V2 | "public" |
+| QQ官方/私域/V3 | "private" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 填写从QQ官方获取的AppID |
+| server.access_token | 填写从QQ官方获取的AppSecret |
+
