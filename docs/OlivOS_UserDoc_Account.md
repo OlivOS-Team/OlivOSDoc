@@ -2,12 +2,10 @@
 
 ## 账号系统介绍
 
-### 介绍
 总的来说，`OlivOS`是一个可以同时支持多平台与多账号的交互栈框架，对于`OlivOS`来说，每一个账号都是一个独立的连接实例，你可以通过配置来对其进行分配。
 
 ## 账号配置文件
 
-### 介绍
 账号配置文件通常为`conf/account.json`，这是一个`JSON`格式的配置文件，你可以通过修改这个文件来对账号进行配置，但是在`Win`平台上，你还可以用启动时会自动启动的账号编辑器来进行管理。  
 
 ### 文件格式
@@ -70,8 +68,8 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 
 | 名称 | 配置 |
 |:---|:---|
-| sdk_type | "qq" |
-| platform_type | "onebot" |
+| platform_type | "qq" |
+| sdk_type | "onebot" |
 | model_type | "default" |
 | server.auto | false |
 | server.type | "post" |
@@ -94,8 +92,8 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 
 | 名称 | 配置 |
 |:---|:---|
-| sdk_type | "qq" |
-| platform_type | "onebot" |
+| platform_type | "qq" |
+| sdk_type | "onebot" |
 | model_type | "shamrock_default" |
 | server.auto | false |
 | server.type | "post" |
@@ -119,8 +117,8 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 
 | 名称 | 配置 |
 |:---|:---|
-| sdk_type | "qq" |
-| platform_type | "onebot" |
+| platform_type | "qq"<br/>"wechat" |
+| sdk_type | "onebot" |
 | model_type | "onebotV12" |
 | server.auto | false |
 | server.type | "websocket" |
@@ -133,3 +131,28 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 | server.host | 需要填写协议端的地址 |
 | server.port | 需要填写协议端的端口 |
 | server.access_token | 视情况填写，但最好不要空置 |
+
+
+### RED协议
+
+这种连接方式适配了`Chronocat`的`RED`协议，协议其实只是`QQNT`中hook数据的简单封装，OlivOS对此进行了适配。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "qq" |
+| sdk_type | "onebot" |
+| model_type | "red" |
+| server.auto | false |
+| server.type | "websocket" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 填写机器人账号ID |
+| server.host | 需要填写协议端的WS地址 |
+| server.port | 需要填写协议端的WS端口 |
+| server.access_token | 视情况填写，但最好不要空置 |
+| extends.http-path | 需要填写后续计划支持的协议端的HTTP地址<br/>But……Chronocat停止维护了<br/>所以这东西现在没用 |
