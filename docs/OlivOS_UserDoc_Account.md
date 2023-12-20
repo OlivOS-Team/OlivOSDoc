@@ -392,6 +392,7 @@ KOOK官方的相关文档可以在[这里](https://developer.kookapp.cn/)找到�
 
 ### QQ官方/V1
 这种连接方式对接了QQ官方的开放平台机器人接口。  
+QQ官方开放平台的文档可以在[这里](https://bot.q.qq.com/wiki/)找到。  
 所采用的机器人接口为V1版本，这种接口已经被官方升级为V2，但由于其向下兼容性较好，仍然可以使用，所以仍然保留。  
 
 **固定配置**
@@ -421,6 +422,7 @@ KOOK官方的相关文档可以在[这里](https://developer.kookapp.cn/)找到�
 
 ### QQ官方/V2
 这种连接方式对接了QQ官方的开放平台机器人接口。  
+QQ官方开放平台的文档可以在[这里](https://bot.q.qq.com/wiki/)找到。  
 所采用的机器人接口为V2版本，一些新的功能例如`QQ群官方机器人`需要这个版本的接口对接。  
 
 **固定配置**
@@ -550,4 +552,34 @@ Fanbook官方的相关文档可以在[这里](https://open.fanbook.mobi/document
 | 名称 | 填写说明 |
 |:---|:---|
 | server.access_token | 填写从Fanbook官方获取的Token |
+
+
+### Hack.Chat
+这种连接方式对接了Hack.Chat聊天协议。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "hackChat" |
+| sdk_type | "hackChat_link" |
+| model_type | 详见可变配置 |
+| server.auto | true |
+| server.type | "websocket" |
+
+**可变配置**
+
+| 账号类型 | model_type |
+|:---|:---|
+| Hack.Chat | "default" |
+| Hack.Chat/私有 | "private" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 所要连接的房间名称 |
+| server.access_token | 连入房间的Bot名称 |
+| password | 连入房间的Bot的pass鉴权<br/>这是Hack.Chat协议的扩展内容<br/>这可以有效避免被人顶替 |
+| extends.ws_path | 私有的Websocket服务器地址<br/>这个字段只在`Hack.Chat/私有`需要被配置 |
 
