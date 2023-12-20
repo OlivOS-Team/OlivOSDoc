@@ -302,6 +302,7 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 
 ### KOOK
 这种连接方式对接了KOOK开放平台的官方机器人接口。  
+KOOK官方的相关文档可以在[这里](https://developer.kookapp.cn/)找到。  
 其中消息兼容模式将会以纯文本的方式发送消息，这可以解决某些用户遇到的权限不足的问题。  
 
 **固定配置**
@@ -330,6 +331,7 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 
 ### 米游社/大别野
 这种连接方式对接了米游社大别野开放平台的官方机器人接口。  
+米游社大别野相关的文档可以在[这里](https://webstatic.mihoyo.com/vila/bot/doc/)找到。  
 
 **固定配置**
 
@@ -436,7 +438,7 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 | 账号类型 | model_type |
 |:---|:---|
 | QQ官方/公域/V2 | "public" |
-| QQ官方/私域/V3 | "private" |
+| QQ官方/私域/V2 | "private" |
 
 **所需配置**
 
@@ -444,4 +446,108 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 |:---|:---|
 | id | 填写从QQ官方获取的AppID |
 | server.access_token | 填写从QQ官方获取的AppSecret |
+
+
+### Telegram
+这种连接方式对接了Telegram官方的开放平台机器人接口。  
+Telegram官方的相关文档可以在[这里](https://core.telegram.org/bots/api)找到。  
+根据相关[文档](https://core.telegram.org/bots/features#botfather)，Telegram的机器人需要通过一个官方机器人[@botfather](https://t.me/botfather)来创建。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "telegram" |
+| sdk_type | "telegram_poll" |
+| model_type | "default" |
+| server.auto | true |
+| server.type | "post" |
+
+**所需配置**
+
+你会从官方获取到一个格式类似如下的字符串，它与`id`、`server.access_token`字段的对应关系如下。  
+
+
+```
+11451419198100:xxxxxxxxxxxxxxxxxxxxxxxxxx
+|<----id---->|
+|<---------server.access_token--------->|
+```
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 填写从Telegram官方获取的ID |
+| server.access_token | 填写从Telegram官方获取的TOKEN |
+
+
+### Discord
+这种连接方式对接了Discord官方的开放平台机器人接口。  
+Discord官方的相关文档可以在[这里](https://discord.com/developers/docs/intro)找到。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "discord" |
+| sdk_type | "discord_link" |
+| model_type | "default" |
+| server.auto | true |
+| server.type | "websocket" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| server.access_token | 填写从Discord官方获取的TOKEN |
+
+
+### 渡渡语音/Dodo
+这种连接方式对接了Dodo官方的开放平台机器人接口。  
+Dodo官方的相关文档可以在[这里](https://open.imdodo.com/)找到。  
+提供了`V1`、`V2`两个版本接口的对接，两个版本的接口在功能上没有区别，但是在ID对应关系上有一些区别，虽然Dodo官方提供了映射对应的接口，但是这个接口与`V1`版本接口的生命周期一致，并不能永久的保证配合`V2`接口的使用，因而这实际上是官方自上而下的破坏性更新，`OlivOS`在此特别区分两个版本。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "dodo" |
+| sdk_type | "dodo_link" |
+| model_type | 详见可变配置 |
+| server.auto | true |
+| server.type | "websocket" |
+
+**可变配置**
+
+| 账号类型 | model_type |
+|:---|:---|
+| 渡渡语音/Dodo/V1 | "v1" |
+| 渡渡语音/Dodo/V2 | "default" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 填写从Dodo官方获取的BotID |
+| server.access_token | 填写从Dodo官方获取的Bot私钥 |
+
+
+### Fanbook
+这种连接方式对接了Fanbook官方的开放平台机器人接口。  
+Fanbook官方的相关文档可以在[这里](https://open.fanbook.mobi/document/manage/doc/)找到。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "fanbook" |
+| sdk_type | "fanbook_poll" |
+| model_type | "default" |
+| server.auto | true |
+| server.type | "post" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| server.access_token | 填写从Fanbook官方获取的Token |
 
