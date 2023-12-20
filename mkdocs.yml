@@ -50,6 +50,8 @@ nav:
   - 首页: index.md
   - 开发手册:
     - 开发手册: OlivOS_README.md
+    - 基础使用:
+      - 账号管理: OlivOS_UserDoc_Account.md
     - 协议端:
       - OnebotV11: OlivOSOnebotV11.md
     - 插件开发:
