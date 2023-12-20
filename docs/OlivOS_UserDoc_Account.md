@@ -156,3 +156,27 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 | server.port | 需要填写协议端的WS端口 |
 | server.access_token | 视情况填写，但最好不要空置 |
 | extends.http-path | 需要填写后续计划支持的协议端的HTTP地址<br/>But……Chronocat停止维护了<br/>所以这东西现在没用 |
+
+
+### OPQBot/正向WS
+
+这种连接方式适配了`OPQBot`的正向Websocket协议。  
+请注意，OPQBot（原IOTQQ）基于远程协议端实现，可以基本理解为，在远程服务器上为你的账号分配一个QQ虚拟机，而OlivOS对接的OPQBot只是一个连接这个虚拟机的客户端，本地几乎没有什么东西，它需要将你的登录凭证上交至远端的OPQBot官方（与OlivOS无关的第三方），且OPQBot为闭源框架，该过程无法监督，所以你的账号几乎一定会面临安全风险（比如框架跑路后可能报废）；对于这类第三方的协议框架对接方式，如果出现这种情况，**OlivOS官方将不会对此负责，也无法做出任何补偿**，请**仔细斟酌**后再考虑使用该种登录方案，如果无法接受，**OlivOS将同样为你提供其它更安全的登陆方式，OPQBot只是OlivOS已经对接的20多种对接方式中的一种**。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "qq" |
+| sdk_type | "onebot" |
+| model_type | "opqbot_default" |
+| server.auto | false |
+| server.type | "websocket" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 填写机器人账号ID |
+| server.host | 需要填写协议端的WS地址 |
+| server.port | 需要填写协议端的WS端口 |
