@@ -298,3 +298,62 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 | id | 填写机器人账号ID |
 | server.port | 需要填写协议端的WS端口<br/>`QQ/OPQ/默认`中可随意填 |
 | server.access_token | 填写从`OPQBot`官方获取的Token |
+
+
+### KOOK
+这种连接方式对接了KOOK开放平台的官方机器人接口。  
+其中消息兼容模式将会以纯文本的方式发送消息，这可以解决某些用户遇到的权限不足的问题。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "kaiheila" |
+| sdk_type | "kaiheila_link" |
+| model_type | 详见可变配置 |
+| server.auto | true |
+| server.type | "websocket" |
+
+**可变配置**
+
+| 账号类型 | model_type |
+|:---|:---|
+| KOOK | "default" |
+| KOOK/消息兼容 | "text" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| server.access_token | 填写从KOOK官方获取的Token |
+
+
+### 米游社/大别野
+这种连接方式对接了米游社大别野开放平台的官方机器人接口。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "mhyVila" |
+| sdk_type | "mhyVila_link" |
+| model_type | 详见可变配置 |
+| server.auto | true |
+| server.type | "websocket" |
+
+**可变配置**
+
+| 账号类型 | model_type |
+|:---|:---|
+| 米游社/大别野/公域 | "public" |
+| 米游社/大别野/私域 | "private" |
+| 米游社/大别野/沙盒 | "sandbox" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 填写从米游社官方获取的Bot_Id |
+| password | 填写从米游社官方获取的Secret |
+| server.access_token | 填写从米游社官方获取的Pub_Key |
+| server.port | 机器人所应用的别野号<br/>只有沙盒模式下需要填写特定别野号<br/>上架后可以填写为`0` |
