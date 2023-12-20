@@ -554,6 +554,26 @@ Fanbook官方的相关文档可以在[这里](https://open.fanbook.mobi/document
 | server.access_token | 填写从Fanbook官方获取的Token |
 
 
+### 钉钉
+这种连接方式支持了钉钉官方开放平台的机器人接口。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "dingtalk" |
+| sdk_type | "dingtalk_link" |
+| model_type | "default" |
+| server.auto | true |
+| server.type | "websocket" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 钉钉官方开放平台的机器人账号的Robot Code |
+
+
 ### Hack.Chat
 这种连接方式对接了Hack.Chat聊天协议。  
 
@@ -582,4 +602,74 @@ Fanbook官方的相关文档可以在[这里](https://open.fanbook.mobi/document
 | server.access_token | 连入房间的Bot名称 |
 | password | 连入房间的Bot的pass鉴权<br/>这是Hack.Chat协议的扩展内容<br/>这可以有效避免被人顶替 |
 | extends.ws_path | 私有的Websocket服务器地址<br/>这个字段只在`Hack.Chat/私有`需要被配置 |
+
+
+### 虚拟终端
+这种连接方式支持你打开一个本地的虚拟聊天终端，你可以任意与Bot对话的身份与场景，主要可以用于插件的调试。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "terminal" |
+| sdk_type | "terminal_link" |
+| model_type | "default" |
+| server.auto | true |
+| server.type | "websocket" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 虚拟的Bot账号ID |
+
+
+### 接口终端（不成熟）
+这种连接方式支持你打开一个本地的虚拟聊天终端，不同之处在于这个终端的交互途径是HTTP接口，这可以用于一些网络应用的实现。  
+不过该功能目前遇到了一些性能瓶颈，所以后续打算用Websocket的方式重写。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "terminal" |
+| sdk_type | "terminal_link" |
+| model_type | "postapi" |
+| server.auto | true |
+| server.type | "post" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 虚拟的Bot账号ID |
+| server.port | 服务开放的端口 |
+
+
+### FF14终端
+这种连接方式支持你打开一个本地的虚拟聊天终端，但它同时有一套完整的基于以下回路对接最终幻想14（FINAL FANTASY XIV）的技术支持。  
+
+```
+FF14 -> ACT -> Triggernometry -> OlivOS -> 鲇鱼精邮差 -> ACT -> FF14
+```
+
+相关的介绍在[这里](https://forum.olivos.run/d/352-olivadice14trpg)  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "terminal" |
+| sdk_type | "terminal_link" |
+| model_type | "ff14" |
+| server.auto | true |
+| server.type | "post" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 虚拟的Bot账号ID |
+| server.port | Triggernometry中使用的端口 |
+| server.access_token | 鲇鱼精邮差的监听端口 |
 
