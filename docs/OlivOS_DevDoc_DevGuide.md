@@ -59,10 +59,40 @@
 + `OlivOS/adapter/discord/discordLinkServerAPI.py`
 + ...
 
-部分早期的模块不遵守这个命名规则。  
+部分早期的模块不遵守这个命名规则，比如`OlivOS/adapter/onebotV11/flaskServerAPI.py`。  
 
 ### OlivOS/core
-`OlivOS/core`目录下存放了`OlivOS`的核心组件，这些组件将为`OlivOS`提供核心功能。
+`OlivOS/core`目录下为`OlivOS`的核心组件，这些组件将为`OlivOS`提供核心功能。
+
+### OlivOS/core/boot
+`OlivOS/core/boot`目录下为`OlivOS`的启动实例相关组件，`OlivOS`启动时调用的接口直接来自于此。  
+
+### OlivOS/core/core
+`OlivOS/core/boot`目录下为`OlivOS`的核心组件，一些核心的功能诸如核心对象、插件加载器、账号管理机、消息抽象语法树、元数据、日志模块，都会放在这里。  
+
+### OlivOS/core/info
+`OlivOS/core/info`目录下为`OlivOS`的全局信息，诸如版本信息、版本兼容性、资源文件源，等信息。  
+
+### OlivOS/core/inlineData
+`OlivOS/core/inlineData`目录下为`OlivOS`的内联数据，这些数据将在`OlivOS`启动时被加载，通常是一些静态数据，比如软件图标文件数据。  
+
+### OlivOS/core/L10N
+`OlivOS/core/L10N`目录下为`OlivOS`的本地化组件，`L10N`是`localization`的缩写，这些组件将为`OlivOS`提供本地化支持。  
+
+### OlivOS/core/web
+`OlivOS/core/web`目录下为`OlivOS`的网络支持库，这些组件将为`OlivOS`提供诸如资源文件更新、代理识别等，网络相关服务支持。  
+
+### OlivOS/libBooter
+`OlivOS/libBooter`目录下为`OlivOS`的依赖二进制库的启动器组件，这些组件将为`OlivOS`提供诸如`go-cqgttp`、`walle-q`等二进制文件的挂载启动功能。  
+
+### OlivOS/nativeGUI
+`OlivOS/nativeGUI`目录下为`OlivOS`的Win平台原生GUI组件。  
+
+### OlivOS/thirdPartyModule
+`OlivOS/thirdPartyModule`目录下为`OlivOS`的第三方模块，原则上，不基于Pypi包管理且需要引入的第三方模块都要在这里引入。  
+
+### OlivOS/userModule
+`OlivOS/userModule`目录下为`OlivOS`的社区支持模块，这部分是社区贡献的非核心功能性模块。  
 
 ### script
 `script`目录下存放了一些脚本文件，这些脚本文件可以帮助开发者快速进行一些操作，例如`start.bat`可以帮助开发者快速启动OlivOS实例。  
