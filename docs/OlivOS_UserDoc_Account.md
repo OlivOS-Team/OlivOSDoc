@@ -487,7 +487,7 @@ Telegram官方的相关文档可以在[这里](https://core.telegram.org/bots/ap
 
 ```
 11451419198100:xxxxxxxxxxxxxxxxxxxxxxxxxx
-|<----id---->|
+|<----id---->|                           
 |<---------server.access_token--------->|
 ```
 
