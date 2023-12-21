@@ -53,12 +53,13 @@
 + `OlivOS/adapter/discord/discordSDK.py`
 + ...
 
-`**API.py`通常以`{协议名}{连接方式}ServerAPI.py`的方式命名，连接方式通常取决于协议的连接方式，目前基于`websocket`的会使用`Link`，基于`长轮询`的会使用`Poll`，如：  
+`**API.py`通常以`{协议名}{连接方式}ServerAPI.py`的方式命名，连接方式通常用于直观表明协议的主要连接方式，目前基于`websocket`的会使用`Link`，基于`长轮询`的会使用`Poll`，如：  
 
 + `OlivOS/adapter/telegram/telegramPollServerAPI.py`
 + `OlivOS/adapter/discord/discordLinkServerAPI.py`
 + ...
 
+部分早期的模块不遵守这个命名规则。  
 
 ### OlivOS/core
 `OlivOS/core`目录下存放了`OlivOS`的核心组件，这些组件将为`OlivOS`提供核心功能。
