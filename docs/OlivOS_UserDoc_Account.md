@@ -424,6 +424,18 @@ QQ官方开放平台的文档可以在[这里](https://bot.q.qq.com/wiki/)找到
 这种连接方式对接了QQ官方的开放平台机器人接口。  
 QQ官方开放平台的文档可以在[这里](https://bot.q.qq.com/wiki/)找到。  
 所采用的机器人接口为V2版本，一些新的功能例如`QQ群官方机器人`需要这个版本的接口对接。  
+基于文档，不同的账号类型对应不同的`intents`，你可以在[这里](https://bot.q.qq.com/wiki/develop/api-v2/dev-prepare/interface-framework/event-emit.html#websocket-%E6%96%B9%E5%BC%8F)查看相关说明。  
+其对应关系如下：  
+
+| 账号类型 | intents |
+|:---|:---|
+| QQ官方/公域/V2 | GUILDS<br/>DIRECT_MESSAGE<br/>PUBLIC_GUILD_MESSAGES<br/>PUBLIC_QQ_MESSAGES |
+| QQ官方/公域/V2/纯频道 | GUILDS<br/>DIRECT_MESSAGE<br/>PUBLIC_GUILD_MESSAGES |
+| QQ官方/公域/V2/指定intents | 指定 |
+| QQ官方/私域/V2 | GUILDS<br/>DIRECT_MESSAGE<br/>GUILD_MESSAGES |
+| QQ官方/私域/V2/指定intents | 指定 |
+
+其中，`QQ官方/公域/V2/指定intents`和`QQ官方/私域/V2/指定intents`可以直接指定`intents`，这可以帮助你更好的规划Bot的部署。  
 
 **固定配置**
 
@@ -440,7 +452,10 @@ QQ官方开放平台的文档可以在[这里](https://bot.q.qq.com/wiki/)找到
 | 账号类型 | model_type |
 |:---|:---|
 | QQ官方/公域/V2 | "public" |
+| QQ官方/公域/V2/纯频道 | "public_guild_only" |
+| QQ官方/公域/V2/指定intents | "public_intents" |
 | QQ官方/私域/V2 | "private" |
+| QQ官方/私域/V2/指定intents | "private_intents" |
 
 **所需配置**
 
