@@ -95,7 +95,7 @@
 `OlivOS/userModule`目录下为`OlivOS`的社区支持模块，这部分是社区贡献的非核心功能性模块。  
 
 ### plugin
-`plugin/app`目录下为`OlivOS`的插件目录。  
+`plugin`目录下为`OlivOS`的插件目录。  
 
 #### plugin/app
 `plugin/app`目录下为`OlivOS`的插件加载目录，在这里的插件将被加载。
