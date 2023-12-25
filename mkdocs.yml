@@ -60,12 +60,12 @@ nav:
       - 插件接口: OlivOS_DevDoc_Plugin_API.md
       - 开发技巧: OlivOS_DevDoc_Note.md
     - 开发指引:
-      - 开源协议: DevGuild/OlivOS_DevOpenSource.md
-      - 技术选型: DevGuild/OlivOS_DevTechnology.md
-      - 开发环境: DevGuild/OlivOS_DevEnv.md
-      - 文件结构: DevGuild/OlivOS_DevFile.md
-      - 组件框架: DevGuild/OlivOS_DevFramework.md
-      - 插件架构: DevGuild/OlivOS_DevPlugin.md
+      - 开源协议: DevGuild/OpenSource.md
+      - 技术选型: DevGuild/Technology.md
+      - 开发环境: DevGuild/Env.md
+      - 文件结构: DevGuild/File.md
+      - 组件框架: DevGuild/Framework.md
+      - 插件架构: DevGuild/Plugin.md
       #- 产品模型
       #- 实现细节
   - 生态: EcoSystem.md
