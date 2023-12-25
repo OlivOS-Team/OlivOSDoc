@@ -47,7 +47,8 @@ plugins:
         'OlivOS_DevDoc_Note.md': 'DevPlugin/Note.md'
         'OlivOS_DevDoc_Open_Source.md': 'DevGuild/OpenSource.md'
         'OlivOS_DevDoc_Technology.md': 'DevGuild/Technology.md'
-        'EcoSystem.md': 'EcoSystem/EcoSystem.md'
+        'EcoSystem.md': 'Community/EcoSystem.md'
+        'EcoSystem/EcoSystem.md': 'Community/EcoSystem.md'
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
@@ -81,6 +82,6 @@ nav:
       - 插件架构: DevGuild/Plugin.md
       #- 产品模型
       #- 实现细节
-  - 生态: EcoSystem/EcoSystem.md
+  - 生态: Community/EcoSystem.md
   - 论坛: https://forum.olivos.run
   - 捐助: https://afdian.net/@OlivOS
