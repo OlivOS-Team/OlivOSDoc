@@ -34,10 +34,21 @@ theme:
     - navigation.expand
 plugins:
   - search:
-      separator: '[\s\u200b\-]'
+    separator: '[\s\u200b\-]'
+  - redirects:
+    redirect_maps:
+      'OlivOS_UserDoc_Account.md': 'User/Account.md'
+      'OlivOSOnebotV11.md': 'Protocol/OlivOSOnebotV11.md'
+      'OlivOS_DevDoc_Plugin_Template.md': 'DevPlugin/Template.md'
+      'OlivOS_DevDoc_Event.md': 'DevPlugin/Event.md'
+      'OlivOS_DevDoc_Plugin_API.md': 'DevPlugin/API.md'
+      'OlivOS_DevDoc_Note.md': 'DevPlugin/Note.md'
+      'OlivOS_DevDoc_Open_Source.md': 'DevGuild/OpenSource.md'
+      'OlivOS_DevDoc_Technology.md': 'DevGuild/Technology.md'
+      'EcoSystem.md': 'EcoSystem/EcoSystem.md'
 markdown_extensions:
   - pymdownx.highlight:
-      anchor_linenums: true
+    anchor_linenums: true
   - admonition
   - pymdownx.inlinehilite
   - pymdownx.snippets
@@ -51,14 +62,14 @@ nav:
   - 开发手册:
     - 开发手册: OlivOS_README.md
     - 基础使用:
-      - 账号管理: OlivOS_UserDoc_Account.md
+      - 账号管理: User/Account.md
     - 协议端:
-      - OnebotV11: OlivOSOnebotV11.md
+      - OnebotV11: Protocol/OlivOSOnebotV11.md
     - 插件开发:
-      - 插件模板: OlivOS_DevDoc_Plugin_Template.md
-      - 框架事件: OlivOS_DevDoc_Event.md
-      - 插件接口: OlivOS_DevDoc_Plugin_API.md
-      - 开发技巧: OlivOS_DevDoc_Note.md
+      - 插件模板: DevPlugin/Template.md
+      - 框架事件: DevPlugin/Event.md
+      - 插件接口: DevPlugin/API.md
+      - 开发技巧: DevPlugin/Note.md
     - 开发指引:
       - 开源协议: DevGuild/OpenSource.md
       - 技术选型: DevGuild/Technology.md
@@ -68,6 +79,6 @@ nav:
       - 插件架构: DevGuild/Plugin.md
       #- 产品模型
       #- 实现细节
-  - 生态: EcoSystem.md
+  - 生态: EcoSystem/EcoSystem.md
   - 论坛: https://forum.olivos.run
   - 捐助: https://afdian.net/@OlivOS
