@@ -34,21 +34,21 @@ theme:
     - navigation.expand
 plugins:
   - search:
-    separator: '[\s\u200b\-]'
+      separator: '[\s\u200b\-]'
   - redirects:
-    redirect_maps:
-      'OlivOS_UserDoc_Account.md': 'User/Account.md'
-      'OlivOSOnebotV11.md': 'Protocol/OlivOSOnebotV11.md'
-      'OlivOS_DevDoc_Plugin_Template.md': 'DevPlugin/Template.md'
-      'OlivOS_DevDoc_Event.md': 'DevPlugin/Event.md'
-      'OlivOS_DevDoc_Plugin_API.md': 'DevPlugin/API.md'
-      'OlivOS_DevDoc_Note.md': 'DevPlugin/Note.md'
-      'OlivOS_DevDoc_Open_Source.md': 'DevGuild/OpenSource.md'
-      'OlivOS_DevDoc_Technology.md': 'DevGuild/Technology.md'
-      'EcoSystem.md': 'EcoSystem/EcoSystem.md'
+      redirect_maps:
+        'OlivOS_UserDoc_Account.md': 'User/Account.md'
+        'OlivOSOnebotV11.md': 'Protocol/OlivOSOnebotV11.md'
+        'OlivOS_DevDoc_Plugin_Template.md': 'DevPlugin/Template.md'
+        'OlivOS_DevDoc_Event.md': 'DevPlugin/Event.md'
+        'OlivOS_DevDoc_Plugin_API.md': 'DevPlugin/API.md'
+        'OlivOS_DevDoc_Note.md': 'DevPlugin/Note.md'
+        'OlivOS_DevDoc_Open_Source.md': 'DevGuild/OpenSource.md'
+        'OlivOS_DevDoc_Technology.md': 'DevGuild/Technology.md'
+        'EcoSystem.md': 'EcoSystem/EcoSystem.md'
 markdown_extensions:
   - pymdownx.highlight:
-    anchor_linenums: true
+      anchor_linenums: true
   - admonition
   - pymdownx.inlinehilite
   - pymdownx.snippets
