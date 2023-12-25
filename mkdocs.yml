@@ -37,6 +37,7 @@ plugins:
       separator: '[\s\u200b\-]'
   - redirects:
       redirect_maps:
+        'OlivOS_README.md': 'intro.md'
         'OlivOS_UserDoc_Account.md': 'User/Account.md'
         'OlivOSOnebotV11.md': 'Protocol/OlivOSOnebotV11.md'
         'OlivOS_DevDoc_Plugin_Template.md': 'DevPlugin/Template.md'
@@ -60,7 +61,7 @@ extra_css:
 nav:
   - 首页: index.md
   - 开发手册:
-    - 开发手册: OlivOS_README.md
+    - 开发手册: intro.md
     - 基础使用:
       - 账号管理: User/Account.md
     - 协议端:
