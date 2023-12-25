@@ -37,7 +37,6 @@ plugins:
       separator: '[\s\u200b\-]'
   - redirects:
       redirect_maps:
-        'intro.md': 'Intro.md'
         'OlivOS_README.md': 'Intro.md'
         'OlivOS_UserDoc_Account.md': 'User/Account.md'
         'OlivOSOnebotV11.md': 'Protocol/OlivOSOnebotV11.md'
