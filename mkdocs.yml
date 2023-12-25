@@ -62,7 +62,9 @@ nav:
     - 开发指引:
       - 开源协议: OlivOS_DevDoc_Open_Source.md
       - 技术选型: OlivOS_DevDoc_Technology.md
-      - 开发指引: OlivOS_DevDoc_DevGuide.md
+      - 开发环境: DevGuild/OlivOS_DevEnv.md
+      - 文件结构: DevGuild/OlivOS_DevFile.md
+      - 程序框架: DevGuild/OlivOS_DevFramework.md
       #- 产品模型
       #- 实现细节
   - 生态: EcoSystem.md
