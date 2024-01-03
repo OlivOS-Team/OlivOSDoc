@@ -10,7 +10,7 @@ plugin_event.send(send_type, target_id, message)
 这个类的构造通常由收消息的前置组件所提供的`sdk_event`和插件托盘进程的`日志函数`共同完成，这意味着你需要首先去获得它们。  
 
 #### 日志函数
-`日志函数`由插件托盘进程提供，它几乎在每个[框架事件](https://doc.olivos.wiki/OlivOS_DevDoc_Event.html)中都会被作为[入参](https://doc.olivos.wiki/OlivOS_DevDoc_Event.html#%E5%8F%82%E6%95%B0%E8%A7%84%E8%8C%83)提供。
+`日志函数`由插件托盘进程提供，它几乎在每个[框架事件](/OlivOS_DevDoc_Event)中都会被作为[入参](/OlivOS_DevDoc_Event)提供。
 以如下事件举例
 ```python
 class Event(object):
