@@ -56,6 +56,8 @@
 ## 欢迎点击Star，这对我们将带来很大的支持！
 [![Star History Chart](https://api.star-history.com/svg?repos=OlivOS-Team/OlivOS&type=Date)](https://star-history.com/#OlivOS-Team/OlivOS&Date)
 
+[前往OlivOS项目主页](https://github.com/OlivOS-Team/OlivOS)
+
 ## 开始使用
 ### 发布版本
 #### Windows
