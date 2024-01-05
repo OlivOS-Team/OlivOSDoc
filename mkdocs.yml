@@ -63,10 +63,6 @@ nav:
   - 首页: index.md
   - 开发手册:
     - 开发手册: Intro.md
-    - 基础使用:
-      - 账号管理: User/Account.md
-    - 协议端:
-      - OnebotV11: Protocol/OlivOSOnebotV11.md
     - 插件开发:
       - 插件模板: DevPlugin/Template.md
       - 框架事件: DevPlugin/Event.md
@@ -81,6 +77,11 @@ nav:
       - 插件架构: DevGuild/Plugin.md
       #- 产品模型
       #- 实现细节
+  - 基础使用:
+    - 基础使用:
+      - 账号管理: User/Account.md
+    - 协议端:
+      - OnebotV11: Protocol/OlivOSOnebotV11.md
   - 生态: Community/EcoSystem.md
   - 论坛: https://forum.olivos.run
   - 捐助: https://afdian.net/@OlivOS
