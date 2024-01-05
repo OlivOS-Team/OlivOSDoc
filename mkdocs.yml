@@ -63,6 +63,7 @@ nav:
   - 首页: index.md
   - 使用:
     - 基础使用:
+      - 开始使用: User/Intro.md
       - 账号管理: User/Account.md
     - 协议端:
       - OnebotV11: Protocol/OlivOSOnebotV11.md
