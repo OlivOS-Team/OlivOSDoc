@@ -61,7 +61,7 @@ extra_css:
 
 nav:
   - 首页: index.md
-  - 基础:
+  - 使用:
     - 基础使用:
       - 账号管理: User/Account.md
     - 协议端:
