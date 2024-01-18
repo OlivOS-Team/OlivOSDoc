@@ -101,7 +101,7 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 + `回调HTTP地址`对应`反向HTTP`地址  
 + `主动HTTP端口`对应`正向HTTP`端口  
 
-![001](/img/User_Account_001.png)
+![001](/User/img/User_Account_001.png)
 
 **固定配置**
 
