@@ -69,7 +69,7 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 + 一个`协议端`向`OlivOS`方向的`反向HTTP`（`OlivOS`作为服务器），这个方向的的监听端口由`OlivOS`开启  
 
 如果需要指定配置则需要使用`conf/basic.json`配置文件进行配置，默认为`55001`，如果被占用则会自行寻找一个闲置端口，请关注日志  
-你需要在`协议端`配置`http://<ip>:<port>/<platform>/<sdk>/<model>`的上报地址  
+你需要在`协议端`配置`http://<ip>:<port>/OlivOSMsgApi/<platform>/<sdk>/<model>`的上报地址  
 如，`http://127.0.0.1:55001/OlivOSMsgApi/qq/onebot/default`  
 
 **固定配置**
