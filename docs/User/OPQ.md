@@ -5,7 +5,7 @@
 微信小程序中获取TOKEN
 ![小程序二维码](/User/img/f977d4ab-0a7a-4e3e-a1ad-7dd7b0bdf5f6.jpeg)
 
-## 新用户获取TOEKEN
+## 新用户获取TOKEN
 
 1. 登录小程序
 2. 绑定QQ项目
