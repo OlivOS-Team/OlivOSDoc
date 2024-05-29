@@ -5,9 +5,9 @@ Onebot V11 for OlivOS
 
 ### 鸣谢
 本项目基于以下项目进行开发
-- [OlivOS-Team/OlivOS](https://github.com/OlivOS-Team/OlivOS)
-- [dpallot/simple-websocket-server](https://github.com/dpallot/simple-websocket-server)
-- [OneBot](https://onebot.dev/)
++ [OlivOS-Team/OlivOS](https://github.com/OlivOS-Team/OlivOS)
++ [dpallot/simple-websocket-server](https://github.com/dpallot/simple-websocket-server)
++ [OneBot](https://onebot.dev/)
 
 ### 项目特点
 + 采用了无扩展的实现方式，采用分端口的方式完美的实现了对于多账号的支持，可以无修改的支持现存的`OnebotV11`协议应用后端。  
