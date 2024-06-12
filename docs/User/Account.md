@@ -664,7 +664,7 @@ Fanbook官方的相关文档可以在[这里](https://open.fanbook.mobi/document
 不过该功能目前遇到了一些性能瓶颈，所以后续打算用Websocket的方式重写。  
 
 你将可以通过以下`POST`发送以下`json`表单来触发消息  
-```
+```json
 {
     "type": "message",
     "message_type": "group_message",
