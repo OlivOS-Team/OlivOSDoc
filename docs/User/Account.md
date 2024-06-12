@@ -663,7 +663,7 @@ Fanbook官方的相关文档可以在[这里](https://open.fanbook.mobi/document
 这种连接方式支持你打开一个本地的虚拟聊天终端，不同之处在于这个终端的交互途径是HTTP接口，这可以用于一些网络应用的实现。  
 不过该功能目前遇到了一些性能瓶颈，所以后续打算用Websocket的方式重写。  
 
-你将可以通过以下`POST`发送以下`json`表单来触发消息  
+你将可以通过`POST`发送以下`json`表单来触发消息  
 ```json
 {
     "type": "message",
