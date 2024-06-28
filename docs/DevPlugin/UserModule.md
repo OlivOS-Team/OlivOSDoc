@@ -9,6 +9,8 @@
 | 用户配置数据库 | [UserConfDB.py](https://github.com/OlivOS-Team/OlivOS/blob/main/OlivOS/userModule/UserConfDB.py) | [raininboat](https://github.com/raininboat) | 用户配置文件数据库 |
 | IO流包 | [IOStream.py](https://github.com/OlivOS-Team/OlivOS/blob/main/OlivOS/userModule/IOStream.py) | [Dr.Amber](https://github.com/Amber-Keter) | 通过io流形式处理消息 |
 
+---
+
 ## 用户配置数据库
 `UserConfDB` 是一个简易的插件级别配置数据库，一方面可以用于各种轻量级插件的配置信息直接存取；另一方面，在专用命名空间 unity 中，可以方便的实现各个插件之间的配置互通。
 
@@ -201,7 +203,7 @@ conf = Proc.database.set_user_config(namespace, key, value, platform, user_id, p
 
 #### set_group_config | 设置对应群组配置项
 ~~~python
-conf = Proc.database.set_user_config(namespace, key, value, platform, group_id, host_id, pkl=False)
+conf = Proc.database.set_group_config(namespace, key, value, platform, group_id, host_id, pkl=False)
 ~~~
 用于设置某个群聊的某项配置
 
@@ -233,7 +235,7 @@ conf = Proc.database.set_user_config(namespace, key, value, platform, group_id, 
 
 #### set_basic_config | 读取插件自身配置项
 ~~~python
-conf = Proc.database.set_user_config(namespace, key, value, pkl=False)
+conf = Proc.database.set_basic_config(namespace, key, value, pkl=False)
 ~~~
 用于设置插件自身的配置项，即与群组用户均无关的全局配置（如插件配置信息的版本控制）
 
