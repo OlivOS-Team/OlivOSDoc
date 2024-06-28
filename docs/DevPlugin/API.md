@@ -62,6 +62,12 @@ Proc.get_plugin_list()
 ```
 `Proc.get_plugin_list()`接口可以获得一个由插件的`namespace`填充的`list`，这可以让你知道当前的`OlivOS`上存在哪些插件。
 
+### 用户配置数据库
+```python
+Proc.database
+```
+`Proc.database`是一个内置的配置数据库，具体内容详见[用户配置数据库](./UserModule.md#用户配置数据库)
+
 ## 插件接口
 
 ### 发送消息
