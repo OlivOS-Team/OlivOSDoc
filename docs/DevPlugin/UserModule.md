@@ -320,6 +320,26 @@ conf = Proc.database.set_group_config_from_event(namespace, key, value, plugin_e
 ##### 返回值
 目前恒为 `True`
 
+
+#### 举例
+~~~python
+class Event(object):
+    def group_message(plugin_event, Proc):
+         # 获取消息发送者在公用命名空间中，名为"auth"的配置项值
+         auth = Proc.database.get_user_config_from_event(None, "auth", plugin_event, default_value=None, pkl=False)
+         if auth is None:
+            # 如果不存在该配置项，则设置为 0
+            Proc.database.set_user_config_from_event(None, "auth", 0, plugin_event, pkl=False)
+         # 在插件自己的命名空间中，给QQ平台中群号为114514的群聊添加一个名为test的配置项，且由于本配置项为字典，需要使用pkl进行序列化/反序列化操作
+         data = {"aaa": 114514, "bbb": 1919810}
+         Proc.database.set_group_config("PluginNameSpace", "test", data, "qq", "114514", None, pkl=True)
+         # id使用数字和字符串是等效的
+         test_data = Proc.database.get_group_config("PluginNameSpace", "test", "qq", 114514, None, pkl=True)
+         proc.log(0, str(test_data))
+         # 可以得到结果
+         # [2024-xx-xx xx:xx:xx] - [DEBUG] - {'aaa': 114514, 'bbb': 1919810}
+~~~
+
 ---
 
 ## IO流包
