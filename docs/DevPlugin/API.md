@@ -66,7 +66,7 @@ Proc.get_plugin_list()
 ```python
 Proc.database
 ```
-`Proc.database`是一个内置的配置数据库，具体内容详见[用户配置数据库](/DevPlugin/UserModule)
+`Proc.database`是一个内置的配置数据库，具体内容详见[用户配置数据库](/DevPlugin/UserModule/#_3)
 
 ## 插件接口
 
