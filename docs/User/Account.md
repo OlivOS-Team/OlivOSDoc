@@ -59,6 +59,151 @@
 通常，这些组合方式已经被配置为了`OlivOS`各种账号类型，你可以在账号编辑器中选择它们。  
 
 
+### QQ/NapCat/默认
+`NapCatQQ`是一个基于`Onebot`协议的`QQ`机器人协议端，它以PC端的`NTQQ`为基础使用了先进的技术进行实现，是`go-cqhttp`的优秀替代品与接替者，这是它的官方页面[NapCatQQ](https://napneko.github.io)  
+这种连接方式会由`OlivOS`自动接管`NapCatQQ`的启动流程。  
+目前强烈推荐该种方法，此外它还支持以`onebotV11/Http`进行分离式部署。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "qq" |
+| sdk_type | "onebot" |
+| model_type | "napcat_show" |
+| server.auto | true |
+| server.type | "post" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 填写机器人账号ID |
+
+
+### QQ/GoCq
+`go-cqhttp`是一个基于`Onebot`协议的`QQ`机器人协议端，这是它的官方页面[go-cqhttp](https://docs.go-cqhttp.org/)  
+这种连接方式会由`OlivOS`自动接管`go-cqhttp`的启动流程。  
+目前强烈推荐`QQ/GoCq/安卓手机`和`QQ/GoCq/安卓平板`，因为这两种模式收到了`OlivOS`的特别技术支持。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "qq" |
+| sdk_type | "onebot" |
+| model_type | 详见可变配置 |
+| server.auto | true |
+| server.type | "post" |
+
+**可变配置**
+
+| 账号类型 | model_type |
+|:---|:---|
+| QQ/GoCq/默认 | "gocqhttp_show" |
+| QQ/GoCq/安卓手机 | "gocqhttp_show_Android_Phone" |
+| QQ/GoCq/安卓平板 | "gocqhttp_show_Android_Pad" |
+| QQ/GoCq/安卓手表 | "gocqhttp_show_Android_Watch" |
+| QQ/GoCq/iPad | "gocqhttp_show_iPad" |
+| QQ/GoCq/iMac | "gocqhttp_show_iMac" |
+| QQ/GoCq/旧 | "gocqhttp_show_old" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 填写机器人账号ID |
+| password | 填写机器人账号密码 |
+
+
+### QQ/WQ
+这种连接方式会由`OlivOS`自动接管`walle-q`的启动流程。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "qq" |
+| sdk_type | "onebot" |
+| model_type | 详见可变配置 |
+| server.auto | true |
+| server.type | "websocket" |
+
+**可变配置**
+
+| 账号类型 | model_type |
+|:---|:---|
+| QQ/Wq/默认 | "walleq_show" |
+| QQ/Wq/安卓手机 | "walleq_show_Android_Phone" |
+| QQ/Wq/安卓平板 | "walleq_show_Android_Pad" |
+| QQ/Wq/安卓手表 | "walleq_show_Android_Watch" |
+| QQ/Wq/iPad | "walleq_show_iPad" |
+| QQ/Wq/iMac | "walleq_show_iMac" |
+| QQ/Wq/旧 | "walleq_show_old" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 填写机器人账号ID |
+| password | 填写机器人账号密码 |
+
+
+### QQ/OPQ
+这种连接方式会由`OlivOS`自动接管`OPQBot`的启动流程。  
+请注意，OPQBot（原IOTQQ）基于远程协议端实现，可以基本理解为，在远程服务器上为你的账号分配一个QQ虚拟机，而OlivOS对接的OPQBot只是一个连接这个虚拟机的客户端，本地几乎没有什么东西，它需要将你的登录凭证上交至远端的OPQBot官方（与OlivOS无关的第三方），且OPQBot为闭源框架，该过程无法监督，所以你的账号几乎一定会面临安全风险（比如框架跑路后可能报废）；对于这类第三方的协议框架对接方式，如果出现这种情况，**OlivOS官方将不会对此负责，也无法做出任何补偿**，请**仔细斟酌**后再考虑使用该种登录方案，如果无法接受，**OlivOS将同样为你提供其它更安全的登陆方式，OPQBot只是OlivOS已经对接的20多种对接方式中的一种**。  
+
+对接此方法需要一个`Token`，你需要通过官方渠道获取`Token`申请和每日`签到`续签这个`Token`，这是`OPQ`官方要求的避免滥用的必要措施。  
+详情请参考[说明](/User/OPQ)  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "qq" |
+| sdk_type | "onebot" |
+| model_type | 详见可变配置 |
+| server.auto | true |
+| server.type | "websocket" |
+
+**可变配置**
+
+| 账号类型 | model_type |
+|:---|:---|
+| QQ/OPQ/默认 | "opqbot_auto" |
+| QQ/OPQ/指定端口 | "opqbot_port" |
+| QQ/OPQ/指定端口/旧 | "opqbot_port_old" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 填写机器人账号ID |
+| server.port | 需要填写协议端的WS端口<br/>`QQ/OPQ/默认`中可随意填 |
+| server.access_token | 填写从`OPQBot`官方获取的Token |
+
+
+### 微信/ComWeChat
+这种连接方式会由`OlivOS`自动接管`ComWeChatBot`的启动流程。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "wechat" |
+| sdk_type | "onebot" |
+| model_type | "ComWeChatBotClient" |
+| server.auto | true |
+| server.type | "websocket" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 填写机器人账号ID |
+| password | 填写机器人账号密码 |
+
+
 ### onebotV11/Http
 
 这种连接方式适配了OnebotV11协议的Http接口，这种接口通常用于连接`go-cqhttp`、`OpenShamrock`等协议端。    
@@ -197,127 +342,6 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 | id | 填写机器人账号ID |
 | server.host | 需要填写协议端的WS地址 |
 | server.port | 需要填写协议端的WS端口 |
-
-
-### QQ/GoCq
-这种连接方式会由`OlivOS`自动接管`go-cqhttp`的启动流程。  
-
-**固定配置**
-
-| 名称 | 配置 |
-|:---|:---|
-| platform_type | "qq" |
-| sdk_type | "onebot" |
-| model_type | 详见可变配置 |
-| server.auto | true |
-| server.type | "post" |
-
-**可变配置**
-
-| 账号类型 | model_type |
-|:---|:---|
-| QQ/GoCq/默认 | "gocqhttp_show" |
-| QQ/GoCq/安卓手机 | "gocqhttp_show_Android_Phone" |
-| QQ/GoCq/安卓平板 | "gocqhttp_show_Android_Pad" |
-| QQ/GoCq/安卓手表 | "gocqhttp_show_Android_Watch" |
-| QQ/GoCq/iPad | "gocqhttp_show_iPad" |
-| QQ/GoCq/iMac | "gocqhttp_show_iMac" |
-| QQ/GoCq/旧 | "gocqhttp_show_old" |
-
-**所需配置**
-
-| 名称 | 填写说明 |
-|:---|:---|
-| id | 填写机器人账号ID |
-| password | 填写机器人账号密码 |
-
-
-### QQ/WQ
-这种连接方式会由`OlivOS`自动接管`walle-q`的启动流程。  
-
-**固定配置**
-
-| 名称 | 配置 |
-|:---|:---|
-| platform_type | "qq" |
-| sdk_type | "onebot" |
-| model_type | 详见可变配置 |
-| server.auto | true |
-| server.type | "websocket" |
-
-**可变配置**
-
-| 账号类型 | model_type |
-|:---|:---|
-| QQ/Wq/默认 | "walleq_show" |
-| QQ/Wq/安卓手机 | "walleq_show_Android_Phone" |
-| QQ/Wq/安卓平板 | "walleq_show_Android_Pad" |
-| QQ/Wq/安卓手表 | "walleq_show_Android_Watch" |
-| QQ/Wq/iPad | "walleq_show_iPad" |
-| QQ/Wq/iMac | "walleq_show_iMac" |
-| QQ/Wq/旧 | "walleq_show_old" |
-
-**所需配置**
-
-| 名称 | 填写说明 |
-|:---|:---|
-| id | 填写机器人账号ID |
-| password | 填写机器人账号密码 |
-
-
-### 微信/ComWeChat
-这种连接方式会由`OlivOS`自动接管`ComWeChatBot`的启动流程。  
-
-**固定配置**
-
-| 名称 | 配置 |
-|:---|:---|
-| platform_type | "wechat" |
-| sdk_type | "onebot" |
-| model_type | "ComWeChatBotClient" |
-| server.auto | true |
-| server.type | "websocket" |
-
-**所需配置**
-
-| 名称 | 填写说明 |
-|:---|:---|
-| id | 填写机器人账号ID |
-| password | 填写机器人账号密码 |
-
-
-### QQ/OPQ
-这种连接方式会由`OlivOS`自动接管`OPQBot`的启动流程。  
-请注意，OPQBot（原IOTQQ）基于远程协议端实现，可以基本理解为，在远程服务器上为你的账号分配一个QQ虚拟机，而OlivOS对接的OPQBot只是一个连接这个虚拟机的客户端，本地几乎没有什么东西，它需要将你的登录凭证上交至远端的OPQBot官方（与OlivOS无关的第三方），且OPQBot为闭源框架，该过程无法监督，所以你的账号几乎一定会面临安全风险（比如框架跑路后可能报废）；对于这类第三方的协议框架对接方式，如果出现这种情况，**OlivOS官方将不会对此负责，也无法做出任何补偿**，请**仔细斟酌**后再考虑使用该种登录方案，如果无法接受，**OlivOS将同样为你提供其它更安全的登陆方式，OPQBot只是OlivOS已经对接的20多种对接方式中的一种**。  
-
-对接此方法需要一个`Token`，你需要通过官方渠道获取`Token`申请和每日`签到`续签这个`Token`，这是`OPQ`官方要求的避免滥用的必要措施。  
-详情请参考[说明](/User/OPQ)  
-
-**固定配置**
-
-| 名称 | 配置 |
-|:---|:---|
-| platform_type | "qq" |
-| sdk_type | "onebot" |
-| model_type | 详见可变配置 |
-| server.auto | true |
-| server.type | "websocket" |
-
-**可变配置**
-
-| 账号类型 | model_type |
-|:---|:---|
-| QQ/OPQ/默认 | "opqbot_auto" |
-| QQ/OPQ/指定端口 | "opqbot_port" |
-| QQ/OPQ/指定端口/旧 | "opqbot_port_old" |
-
-**所需配置**
-
-| 名称 | 填写说明 |
-|:---|:---|
-| id | 填写机器人账号ID |
-| server.port | 需要填写协议端的WS端口<br/>`QQ/OPQ/默认`中可随意填 |
-| server.access_token | 填写从`OPQBot`官方获取的Token |
 
 
 ### KOOK
