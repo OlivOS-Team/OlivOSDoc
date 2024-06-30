@@ -58,8 +58,11 @@
 其中`固定配置`代表了只有在这些配置项被配置的时候才会被指定为该种连接，而`所需配置`代表了在这种连接模式下要配置的最小规模，没有被列举的条目则表示可选，通常也不会发挥作用。  
 通常，这些组合方式已经被配置为了`OlivOS`各种账号类型，你可以在账号编辑器中选择它们。  
 
+### QQ
 
-### QQ/NapCat/默认
+以下是几种对接`QQ`平台的方法  
+
+#### QQ/NapCat/默认
 `NapCatQQ`是一个基于`Onebot`协议的`QQ`机器人协议端，它以PC端的`NTQQ`为基础使用了先进的技术进行实现，是`go-cqhttp`的优秀替代品与接替者，这是它的官方页面[NapCatQQ](https://napneko.github.io)  
 这种连接方式会由`OlivOS`自动接管`NapCatQQ`的启动流程。  
 目前强烈推荐该种方法，此外它还支持以`onebotV11/Http`进行分离式部署。  
@@ -81,7 +84,7 @@
 | id | 填写机器人账号ID |
 
 
-### QQ/GoCq
+#### QQ/GoCq
 `go-cqhttp`是一个基于`Onebot`协议的`QQ`机器人协议端，这是它的官方页面[go-cqhttp](https://docs.go-cqhttp.org/)  
 这种连接方式会由`OlivOS`自动接管`go-cqhttp`的启动流程。  
 目前强烈推荐`QQ/GoCq/安卓手机`和`QQ/GoCq/安卓平板`，因为这两种模式收到了`OlivOS`的特别技术支持。  
@@ -116,7 +119,7 @@
 | password | 填写机器人账号密码 |
 
 
-### QQ/WQ
+#### QQ/WQ
 这种连接方式会由`OlivOS`自动接管`walle-q`的启动流程。  
 
 **固定配置**
@@ -149,7 +152,7 @@
 | password | 填写机器人账号密码 |
 
 
-### QQ/OPQ
+#### QQ/OPQ
 这种连接方式会由`OlivOS`自动接管`OPQBot`的启动流程。  
 请注意，OPQBot（原IOTQQ）基于远程协议端实现，可以基本理解为，在远程服务器上为你的账号分配一个QQ虚拟机，而OlivOS对接的OPQBot只是一个连接这个虚拟机的客户端，本地几乎没有什么东西，它需要将你的登录凭证上交至远端的OPQBot官方（与OlivOS无关的第三方），且OPQBot为闭源框架，该过程无法监督，所以你的账号几乎一定会面临安全风险（比如框架跑路后可能报废）；对于这类第三方的协议框架对接方式，如果出现这种情况，**OlivOS官方将不会对此负责，也无法做出任何补偿**，请**仔细斟酌**后再考虑使用该种登录方案，如果无法接受，**OlivOS将同样为你提供其它更安全的登陆方式，OPQBot只是OlivOS已经对接的20多种对接方式中的一种**。  
 
@@ -183,28 +186,9 @@
 | server.access_token | 填写从`OPQBot`官方获取的Token |
 
 
-### 微信/ComWeChat
-这种连接方式会由`OlivOS`自动接管`ComWeChatBot`的启动流程。  
+### 分离式部署协议
 
-**固定配置**
-
-| 名称 | 配置 |
-|:---|:---|
-| platform_type | "wechat" |
-| sdk_type | "onebot" |
-| model_type | "ComWeChatBotClient" |
-| server.auto | true |
-| server.type | "websocket" |
-
-**所需配置**
-
-| 名称 | 填写说明 |
-|:---|:---|
-| id | 填写机器人账号ID |
-| password | 填写机器人账号密码 |
-
-
-### onebotV11/Http
+#### onebotV11/Http
 
 这种连接方式适配了OnebotV11协议的Http接口，这种接口通常用于连接`go-cqhttp`、`OpenShamrock`等协议端。    
 OlivOS同样提供了对于这其中部分协议端的更进一步封装，这部分会在后文中提及，此处的连接方式是最为通用的连接方式。    
@@ -237,7 +221,7 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 | server.access_token | 视情况填写，但最好不要空置 |
 
 
-### onebotV11/Http/Shamrock
+#### onebotV11/Http/Shamrock
 
 此连接方式是`onebotV11/Http`的变体，它适配了`OpenShamrock`协议端，由于`OpenShamrock`未能完全实现`onebotV11`，且由于其基于的安卓Java原生中的`orjson`存在扩展后的JSON格式，所以有了本账号类型，以适配各种`OpenShamrock`独有的情形。  
 
@@ -268,7 +252,7 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 | server.access_token | 视情况填写，但最好不要空置 |
 
 
-### onebotV12/正向WS
+#### onebotV12/正向WS
 
 这种连接方式适配了通用的`OnebotV12协议`的`正向Websocket`，这种接口通常用于连接`Walle-q`、`ComWeChatBot`等协议端。  
 OlivOS同样提供了对于这其中部分协议端的更进一步封装，这部分会在后文中提及，此处的连接方式是最为通用的连接方式。  
@@ -293,7 +277,7 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 | server.access_token | 视情况填写，但最好不要空置 |
 
 
-### RED协议
+#### RED协议
 
 这种连接方式适配了`Chronocat`的`RED`协议，协议其实只是`QQNT`中hook数据的简单封装，OlivOS对此进行了适配。  
 
@@ -318,7 +302,7 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 | extends.http-path | 需要填写后续计划支持的协议端的HTTP地址<br/>But……Chronocat停止维护了<br/>所以这东西现在没用 |
 
 
-### OPQBot/正向WS
+#### OPQBot/正向WS
 
 这种连接方式适配了`OPQBot`的正向Websocket协议。  
 请注意，OPQBot（原IOTQQ）基于远程协议端实现，可以基本理解为，在远程服务器上为你的账号分配一个QQ虚拟机，而OlivOS对接的OPQBot只是一个连接这个虚拟机的客户端，本地几乎没有什么东西，它需要将你的登录凭证上交至远端的OPQBot官方（与OlivOS无关的第三方），且OPQBot为闭源框架，该过程无法监督，所以你的账号几乎一定会面临安全风险（比如框架跑路后可能报废）；对于这类第三方的协议框架对接方式，如果出现这种情况，**OlivOS官方将不会对此负责，也无法做出任何补偿**，请**仔细斟酌**后再考虑使用该种登录方案，如果无法接受，**OlivOS将同样为你提供其它更安全的登陆方式，OPQBot只是OlivOS已经对接的20多种对接方式中的一种**。  
@@ -344,7 +328,31 @@ OlivOS同样提供了对于这其中部分协议端的更进一步封装，这�
 | server.port | 需要填写协议端的WS端口 |
 
 
-### KOOK
+### 其它平台
+
+
+#### 微信/ComWeChat
+这种连接方式会由`OlivOS`自动接管`ComWeChatBot`的启动流程。  
+
+**固定配置**
+
+| 名称 | 配置 |
+|:---|:---|
+| platform_type | "wechat" |
+| sdk_type | "onebot" |
+| model_type | "ComWeChatBotClient" |
+| server.auto | true |
+| server.type | "websocket" |
+
+**所需配置**
+
+| 名称 | 填写说明 |
+|:---|:---|
+| id | 填写机器人账号ID |
+| password | 填写机器人账号密码 |
+
+
+#### KOOK
 这种连接方式对接了KOOK开放平台的官方机器人接口。  
 KOOK官方的相关文档可以在[这里](https://developer.kookapp.cn/)找到。  
 其中消息兼容模式将会以纯文本的方式发送消息，这可以解决某些用户遇到的权限不足的问题。  
@@ -373,7 +381,7 @@ KOOK官方的相关文档可以在[这里](https://developer.kookapp.cn/)找到�
 | server.access_token | 填写从KOOK官方获取的Token |
 
 
-### 米游社/大别野
+#### 米游社/大别野
 这种连接方式对接了米游社大别野开放平台的官方机器人接口。  
 米游社大别野相关的文档可以在[这里](https://webstatic.mihoyo.com/vila/bot/doc/)找到。  
 
@@ -405,7 +413,7 @@ KOOK官方的相关文档可以在[这里](https://developer.kookapp.cn/)找到�
 | server.port | 机器人所应用的别野号<br/>只有沙盒模式下需要填写特定别野号<br/>上架后可以填写为`0` |
 
 
-### B站直播间
+#### B站直播间
 这种连接方式对接了B站直播间的弹幕系统。  
 `B站直播间/游客`将会以游客方式对接，这种方式下将会只能浏览弹幕，不能发送消息。  
 `B站直播间/登录`将会进行二维码登录，这种方式可以正常发送消息，但由于弹幕20字数的限制，将会把消息分割发送。  
@@ -434,7 +442,7 @@ KOOK官方的相关文档可以在[这里](https://developer.kookapp.cn/)找到�
 | server.access_token | 填写所要对接的直播间ID |
 
 
-### QQ官方/V1
+#### QQ官方/V1
 这种连接方式对接了QQ官方的开放平台机器人接口。  
 QQ官方开放平台的文档可以在[这里](https://bot.q.qq.com/wiki/)找到。  
 所采用的机器人接口为V1版本，这种接口已经被官方升级为V2，但由于其向下兼容性较好，仍然可以使用，所以仍然保留。  
@@ -464,7 +472,7 @@ QQ官方开放平台的文档可以在[这里](https://bot.q.qq.com/wiki/)找到
 | server.access_token | 填写从QQ官方获取的机器人令牌 |
 
 
-### QQ官方/V2
+#### QQ官方/V2
 这种连接方式对接了QQ官方的开放平台机器人接口。  
 QQ官方开放平台的文档可以在[这里](https://bot.q.qq.com/wiki/)找到。  
 所采用的机器人接口为V2版本，一些新的功能例如`QQ群官方机器人`需要这个版本的接口对接。  
@@ -509,7 +517,7 @@ QQ官方开放平台的文档可以在[这里](https://bot.q.qq.com/wiki/)找到
 | server.access_token | 填写从QQ官方获取的AppSecret |
 
 
-### Telegram
+#### Telegram
 这种连接方式对接了Telegram官方的开放平台机器人接口。  
 Telegram官方的相关文档可以在[这里](https://core.telegram.org/bots/api)找到。  
 根据相关[文档](https://core.telegram.org/bots/features#botfather)，Telegram的机器人需要通过一个官方机器人[@botfather](https://t.me/botfather)来创建。  
@@ -541,7 +549,7 @@ Telegram官方的相关文档可以在[这里](https://core.telegram.org/bots/ap
 | server.access_token | 填写从Telegram官方获取的TOKEN |
 
 
-### Discord
+#### Discord
 这种连接方式对接了Discord官方的开放平台机器人接口。  
 Discord官方的相关文档可以在[这里](https://discord.com/developers/docs/intro)找到。  
 
@@ -562,7 +570,7 @@ Discord官方的相关文档可以在[这里](https://discord.com/developers/doc
 | server.access_token | 填写从Discord官方获取的TOKEN |
 
 
-### 渡渡语音/Dodo
+#### 渡渡语音/Dodo
 这种连接方式对接了Dodo官方的开放平台机器人接口。  
 Dodo官方的相关文档可以在[这里](https://open.imdodo.com/)找到。  
 提供了`V1`、`V2`两个版本接口的对接，两个版本的接口在功能上没有区别，但是在ID对应关系上有一些区别，虽然Dodo官方提供了映射对应的接口，但是这个接口与`V1`版本接口的生命周期一致，并不能永久的保证配合`V2`接口的使用，因而这实际上是官方自上而下的破坏性更新，`OlivOS`在此特别区分两个版本。  
@@ -592,7 +600,7 @@ Dodo官方的相关文档可以在[这里](https://open.imdodo.com/)找到。
 | server.access_token | 填写从Dodo官方获取的Bot私钥 |
 
 
-### Fanbook
+#### Fanbook
 这种连接方式对接了Fanbook官方的开放平台机器人接口。  
 Fanbook官方的相关文档可以在[这里](https://open.fanbook.mobi/document/manage/doc/)找到。  
 
@@ -613,7 +621,7 @@ Fanbook官方的相关文档可以在[这里](https://open.fanbook.mobi/document
 | server.access_token | 填写从Fanbook官方获取的Token |
 
 
-### 钉钉
+#### 钉钉
 这种连接方式支持了钉钉官方开放平台的机器人接口。  
 
 **固定配置**
@@ -633,7 +641,7 @@ Fanbook官方的相关文档可以在[这里](https://open.fanbook.mobi/document
 | id | 钉钉官方开放平台的机器人账号的Robot Code |
 
 
-### Hack.Chat
+#### Hack.Chat
 这种连接方式对接了Hack.Chat聊天协议。  
 
 **固定配置**
@@ -663,7 +671,7 @@ Fanbook官方的相关文档可以在[这里](https://open.fanbook.mobi/document
 | extends.ws_path | 私有的Websocket服务器地址<br/>这个字段只在`Hack.Chat/私有`需要被配置 |
 
 
-### 虚拟终端
+#### 虚拟终端
 这种连接方式支持你打开一个本地的虚拟聊天终端，你可以任意与Bot对话的身份与场景，主要可以用于插件的调试。  
 
 **固定配置**
@@ -683,9 +691,9 @@ Fanbook官方的相关文档可以在[这里](https://open.fanbook.mobi/document
 | id | 虚拟的Bot账号ID |
 
 
-### 接口终端（不成熟）
+#### 接口终端
 这种连接方式支持你打开一个本地的虚拟聊天终端，不同之处在于这个终端的交互途径是HTTP接口，这可以用于一些网络应用的实现。  
-不过该功能目前遇到了一些性能瓶颈，所以后续打算用Websocket的方式重写。  
+该方案充分考虑了并发压力，可以作为一个简单的HTTP接口服务器。  
 
 你将可以通过`POST`发送以下`json`表单来触发消息  
 ```json
@@ -721,7 +729,7 @@ Fanbook官方的相关文档可以在[这里](https://open.fanbook.mobi/document
 | server.port | 服务开放的端口 |
 
 
-### FF14终端
+#### FF14终端
 这种连接方式支持你打开一个本地的虚拟聊天终端，但它同时有一套完整的基于以下回路对接最终幻想14（FINAL FANTASY XIV）的技术支持。  
 
 ```
