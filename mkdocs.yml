@@ -85,6 +85,8 @@ nav:
       - 插件架构: DevGuild/Plugin.md
       #- 产品模型
       #- 实现细节
+    - 社区指引:
+      - 阿罗悖论: CommunityGuild/Elect.md
   - 生态: Community/EcoSystem.md
   - OlivaDice: https://wiki.dice.center/
   - 论坛: https://forum.olivos.run
