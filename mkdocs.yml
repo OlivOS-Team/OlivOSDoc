@@ -65,7 +65,7 @@ nav:
     - 基础使用:
       - 开始使用: User/Intro.md
       - 账号管理: User/Account.md
-      - OPQ注意事项: User/OPQ.md
+      #- OPQ注意事项: User/OPQ.md
     - 协议端:
       - OnebotV11: Protocol/OlivOSOnebotV11.md
   - 开发:
