@@ -422,6 +422,544 @@ plugin_event.get_group_member_list()
 | - | list | 整个返回值为[GROUPUSER](#groupuser--群组用户)类型的列表 | [] |
 
 
+### 检查是否可以发送图片
+```python
+plugin_event.can_send_image()
+```
+用于检查是否可以发送图片
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| yes | bool | 是否可以发送图片 | - |
+
+
+### 检查是否可以发送语音
+```python
+plugin_event.can_send_record()
+```
+用于检查是否可以发送语音
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| yes | bool | 是否可以发送语音 | - |
+
+
+### 获取运行状态
+```python
+plugin_event.get_status()
+```
+用于获取OneBot运行状态
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| online | bool | 当前QQ在线状态 | - |
+| good | bool | 状态符合预期 | - |
+
+
+### 获取版本信息
+```python
+plugin_event.get_version_info()
+```
+用于获取OneBot版本信息
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| app_name | str | 应用标识 | - |
+| app_version | str | 应用版本 | - |
+| protocol_version | str | OneBot协议版本 | - |
+
+
+### 获取频道列表
+```python
+plugin_event.get_host_list()
+```
+用于获取频道列表（KOOK/黑盒语音专用，Discord平台未来会支持）
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| - | list | 频道列表 | [] |
+
+
+### 获取频道信息
+```python
+plugin_event.get_host_info(host_id)
+```
+用于获取频道信息（KOOK/黑盒语音专用，Discord平台未来会支持）
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| host_id | ID | 频道ID | - |
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| - | - | 频道信息 | - |
+
+---
+
+> **注意：以下接口仅在 `OlivOS 0.11.71 优美的陇烟双剑` 版本以上可用**
+
+### 获取合并转发消息
+```python
+plugin_event.get_forward_msg(message_id)
+```
+用于获取合并转发消息内容
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| message_id | ID | 合并转发消息ID | - |
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| messages | list | 消息列表 | [] |
+
+
+### 发送群合并转发消息
+```python
+plugin_event.send_group_forward_msg(group_id, messages)
+```
+用于发送群合并转发消息
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+| messages | list | 消息节点列表 | - |
+
+
+### 发送私聊合并转发消息
+```python
+plugin_event.send_private_forward_msg(user_id, messages)
+```
+用于发送私聊合并转发消息
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| user_id | ID | 用户ID | - |
+| messages | list | 消息节点列表 | - |
+
+
+### 获取精华消息列表
+```python
+plugin_event.get_essence_msg_list(group_id)
+```
+用于获取群精华消息列表
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| - | list | 精华消息列表 | [] |
+
+
+### 设置精华消息
+```python
+plugin_event.set_essence_msg(message_id)
+```
+用于设置精华消息
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| message_id | ID | 消息ID | - |
+
+
+### 移出精华消息
+```python
+plugin_event.delete_essence_msg(message_id)
+```
+用于移出精华消息
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| message_id | ID | 消息ID | - |
+
+
+### 消息表情回应
+```python
+plugin_event.set_msg_emoji_like(message_id, emoji_id, is_set=True, group_id=None)
+```
+用于给消息添加或取消表情回应，统合了所有主流协议（包括 Lagrange 的 group_action，LLOneBot 的取消贴表情）
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| message_id | ID | 消息ID | - |
+| emoji_id | ID | 表情ID | - |
+| is_set | bool | True为添加，False为取消 | True |
+| group_id | ID | 群ID（Lagrange必需） | None |
+
+> 注：Lagrange 平台必须提供 group_id 参数
+
+### 群戳一戳
+```python
+plugin_event.group_poke(group_id, user_id)
+```
+用于在群内戳一戳某人
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+| user_id | ID | 用户ID | - |
+
+
+### 好友戳一戳
+```python
+plugin_event.friend_poke(user_id)
+```
+用于戳一戳好友
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| user_id | ID | 用户ID | - |
+
+
+### 群打卡
+```python
+plugin_event.send_group_sign(group_id)
+```
+用于群打卡
+
+> 注：Lagrange 不支持此接口
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+
+
+### 获取群公告
+```python
+plugin_event.get_group_notice(group_id)
+```
+用于获取群公告列表
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| - | list | 公告列表，每项包含 sender_id、publish_time、message、notice_id 等字段 | [] |
+
+
+### 发送群公告
+```python
+plugin_event.send_group_notice(group_id, content, image=None, **kwargs)
+```
+用于发送群公告
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+| content | str | 公告内容 | - |
+| image | str | 公告图片URL | None |
+| **kwargs | dict | NapCat 额外参数（pinned、type、confirm_required等） | - |
+
+
+### 删除群公告
+```python
+plugin_event.del_group_notice(group_id, notice_id)
+```
+用于删除群公告
+
+> 注：仅 NapCat 和 Lagrange 支持此接口
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+| notice_id | str | 公告ID | - |
+
+
+### 上传群文件
+```python
+plugin_event.upload_group_file(group_id, file, name='', folder_id=None)
+```
+用于上传群文件
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+| file | str | 本地文件路径 | - |
+| name | str | 储存名称 | '' |
+| folder_id | str | 父目录ID | None |
+
+
+### 删除群文件
+```python
+plugin_event.delete_group_file(group_id, file_id, name=None)
+```
+用于删除群文件
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+| file_id | str | 文件ID | - |
+| name | str | 文件名 | None |
+
+
+### 创建群文件夹
+```python
+plugin_event.create_group_file_folder(group_id, name, parent_id='/')
+```
+用于创建群文件夹
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+| name | str | 文件夹名称 | - |
+| parent_id | str | 父目录ID | '/' |
+
+
+### 删除群文件夹
+```python
+plugin_event.delete_group_folder(group_id, folder_id)
+```
+用于删除群文件夹
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+| folder_id | str | 文件夹ID | - |
+
+
+### 获取群文件系统信息
+```python
+plugin_event.get_group_file_system_info(group_id)
+```
+用于获取群文件系统信息
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| file_count | int | 文件数量 | 0 |
+| limit_count | int | 文件数量限制 | 0 |
+| used_space | int | 已使用空间 | 0 |
+| total_space | int | 总空间 | 0 |
+
+
+### 获取群根目录文件列表
+```python
+plugin_event.get_group_root_files(group_id, file_count=None)
+```
+用于获取群根目录文件列表
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+| file_count | int | 获取文件数量（NapCat支持） | None |
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| files | list | 文件列表 | [] |
+| folders | list | 文件夹列表 | [] |
+
+
+### 获取群子目录文件列表
+```python
+plugin_event.get_group_files_by_folder(group_id, folder_id, file_count=None)
+```
+用于获取群子目录文件列表
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+| folder_id | str | 文件夹ID | - |
+| file_count | int | 获取文件数量（NapCat支持） | None |
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| files | list | 文件列表 | [] |
+| folders | list | 文件夹列表 | [] |
+
+
+### 获取群文件下载链接
+```python
+plugin_event.get_group_file_url(group_id, file_id, busid)
+```
+用于获取群文件下载链接
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+| file_id | str | 文件ID | - |
+| busid | int | 文件类型 | - |
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| url | str | 文件下载URL | '' |
+
+
+### 上传私聊文件
+```python
+plugin_event.upload_private_file(user_id, file, name)
+```
+用于上传私聊文件
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| user_id | ID | 用户ID | - |
+| file | str | 本地文件路径 | - |
+| name | str | 文件名称 | - |
+
+
+### 重命名群文件夹
+```python
+plugin_event.rename_group_file_folder(group_id, folder_id, new_folder_name)
+```
+用于重命名群文件夹
+
+> 注：NapCat 不支持此接口
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+| folder_id | str | 文件夹ID | - |
+| new_folder_name | str | 新文件夹名称 | - |
+
+
+### 重命名群文件
+```python
+plugin_event.rename_group_file(group_id, file_id, current_parent_directory, new_name)
+```
+用于重命名群文件
+
+> 注：仅 NapCat 支持此接口
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+| file_id | str | 文件ID | - |
+| current_parent_directory | str | 当前父目录路径 | - |
+| new_name | str | 新文件名 | - |
+
+
+### 群文件转永久
+```python
+plugin_event.set_group_file_forever(group_id, file_id)
+```
+用于将群文件转为永久保存
+
+> 注：Lagrange 不支持此接口
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID | - |
+| file_id | str | 文件ID | - |
+
+
+### 获取已过滤的加群请求
+```python
+plugin_event.get_group_ignore_add_request(group_id=None)
+```
+用于获取已过滤的加群通知
+
+> 注：仅 NapCat 支持此接口，LLOneBot 请使用 `get_group_system_msg`
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | ID | 群ID（可选） | None |
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| - | list | 请求列表，每项包含 request_id、invitor_uin、group_id 等字段 | [] |
+
+
+### 获取被过滤的好友请求
+```python
+plugin_event.get_doubt_friends_add_request(count=50)
+```
+用于获取被过滤的好友请求
+
+> 注：Lagrange 不支持此接口
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| count | int | 获取数量 | 50 |
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| - | list | 请求列表，每项包含 flag、uin、nick、reason 等字段 | [] |
+
+
+### 处理被过滤的好友请求
+```python
+plugin_event.set_doubt_friends_add_request(flag, approve=True)
+```
+用于处理被过滤的好友请求
+
+> 注：Lagrange 不支持此接口
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| flag | str | 请求标识 | - |
+| approve | bool | 是否同意 | True |
+
+
+### 获取群系统消息
+```python
+plugin_event.get_group_system_msg(count=50)
+```
+用于获取群系统消息（包括加群申请和邀请）
+
+> 注：Lagrange 不支持此接口
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| count | int | 获取数量（仅NapCat） | 50 |
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| invited_requests | list | 邀请加群申请列表 | [] |
+| join_requests | list | 加群申请列表 | [] |
+
+
 ## 举例
 以下为一则在`私聊消息`事件中调用`获取陌生人信息`接口的例子
 ```python
