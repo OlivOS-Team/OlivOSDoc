@@ -29,6 +29,32 @@
 | base_info | dict | 内容仅供内部使用，不推荐 | {} |
 | data | - | 此处略，以下详述 | - |
 
+###### bot_info_T 类型说明
+
+`bot_info_T` 是机器人信息对象，包含以下成员：
+
+| 成员 | 类型 | 说明 |
+|:---|:---|:---|
+| id | int | 机器人ID（默认-1） |
+| password | str | 密码（默认空字符串） |
+| platform | dict | 平台信息字典，包含：<br>- sdk: SDK类型（如'onebot', 'qqGuild_link'等）<br>- platform: 平台名称<br>- model: 选用的模型 |
+| hash | str | 机器人的哈希值 |
+| post_info | post_info_T对象 | 连接信息对象（详见下方post_info_T说明） |
+| extends | dict | 扩展信息字典（可用于存储额外的自定义信息） |
+| debug_mode | bool | 调试模式标志（默认False） |
+
+###### post_info_T 类型说明
+
+`post_info_T` 是连接信息对象，包含以下成员：
+
+| 成员 | 类型 | 说明 |
+|:---|:---|:---|
+| auto | bool | 是否自动 |
+| type | str | 服务器类型（默认'post'） |
+| host | str | 主机地址 |
+| port | int | 端口号（默认-1） |
+| access_token | str/None | 访问令牌 |
+
 ##### Proc
 `Proc`传入的是整个插件加载器的进程对象，通常情况下它在插件的整个生命周期中都不会发生改变，所以你大可以将其赋值到插件内的某个全局变量上以确保随时可以使用，有一些常用参数是你可以用到的：
 
