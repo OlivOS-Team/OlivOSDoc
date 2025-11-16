@@ -658,10 +658,10 @@ plugin_event.set_msg_emoji_like(message_id, emoji_id, is_set=True, group_id=None
 | is_set | bool | True为添加，False为取消 | True |
 | group_id | ID | 群ID（Lagrange必需） | None |
 
-> 注：
-> - Lagrange 平台必须提供 group_id 参数，使用 set_group_reaction 接口
-> - NapCat 使用 set_msg_emoji_like 接口，emoji_id为整数
-> - LLOneBot 根据is_set使用 set_msg_emoji_like 或 unset_msg_emoji_like 接口
+> 注：  
+> - Lagrange 平台必须提供 group_id 参数，使用 set_group_reaction 接口  
+> - NapCat 使用 set_msg_emoji_like 接口，emoji_id为整数  
+> - LLOneBot 根据is_set使用 set_msg_emoji_like 或 unset_msg_emoji_like 接口  
 
 ### 群戳一戳
 ```python
