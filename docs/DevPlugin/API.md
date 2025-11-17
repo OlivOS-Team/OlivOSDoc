@@ -780,7 +780,7 @@ plugin_event.del_group_notice(group_id, notice_id)
 
 > 支持平台：OneBotV11
 > 
-> 支持协议：Lagrange、NapCat
+> 支持协议：Lagrange、NapCat、LLOneBot
 
 #### 函数原型
 | 参数 | 类型 | 解释 | 缺省 |
