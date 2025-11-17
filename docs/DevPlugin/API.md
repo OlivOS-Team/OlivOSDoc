@@ -658,10 +658,10 @@ plugin_event.set_msg_emoji_like(message_id, emoji_id, is_set=True, group_id=None
 | is_set | bool | True为添加，False为取消 | True |
 | group_id | ID | 群ID（Lagrange必需） | None |
 
-> 注：
-> - Lagrange 平台必须提供 group_id 参数，使用 set_group_reaction 接口
-> - NapCat 使用 set_msg_emoji_like 接口，emoji_id为整数
-> - LLOneBot 根据is_set使用 set_msg_emoji_like 或 unset_msg_emoji_like 接口
+> 注：  
+> - Lagrange 平台必须提供 group_id 参数，使用 set_group_reaction 接口  
+> - NapCat 使用 set_msg_emoji_like 接口，emoji_id为整数  
+> - LLOneBot 根据is_set使用 set_msg_emoji_like 或 unset_msg_emoji_like 接口  
 
 ### 群戳一戳
 ```python
@@ -738,9 +738,9 @@ plugin_event.get_group_notice(group_id)
 | notice_id | str/int | 公告ID |
 | extra | dict | 扩展信息 |
 
-**平台差异说明：**
-- **NapCat/Lagrange**: `notice_id` 为字符串类型，`extra.notice_id_type` = `'string'`
-- **其他平台**: `notice_id` 为整数类型，`extra.notice_id_type` = `'int'`
+**平台差异说明：**  
+- **NapCat/Lagrange**: `notice_id` 为字符串类型，`extra.notice_id_type` = `'string'`  
+- **其他平台**: `notice_id` 为整数类型，`extra.notice_id_type` = `'int'`  
 
 
 ### 发送群公告
@@ -1130,10 +1130,10 @@ plugin_event.get_group_system_msg(count=50)
 | invited_requests | list | 邀请加群申请列表 | [] |
 | join_requests | list | 加群申请列表 | [] |
 
-> 注：
-> - LLOneBot 使用 GET 方法，不支持 count 参数
-> - NapCat 使用 POST 方法，支持 count 参数
-> - LLOneBot 的已过滤请求也在此接口查看
+> 注：  
+> - LLOneBot 使用 GET 方法，不支持 count 参数  
+> - NapCat 使用 POST 方法，支持 count 参数  
+> - LLOneBot 的已过滤请求也在此接口查看  
 
 
 ## 举例
