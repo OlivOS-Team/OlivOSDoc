@@ -285,6 +285,17 @@
         margin: 0 0 0;
     }
 
+    .scroll-container-end {
+        height: 1.8em;
+        overflow: hidden;
+        display: block;
+    }
+
+    .scroll-container-end p {
+        display: block;
+        margin: 0 0 0;
+    }
+
     @keyframes scroll {
         0% {
           transform: translateY(-1200%);
@@ -330,6 +341,9 @@
                     <p>自由</p>
                     <p>伟大</p>
                     <p>联合</p>
+                </div>
+                <div class="scroll-container-end">
+                    <p></p>
                 </div>
                 <a href="/User/Intro" title="{{ page.next_page.title | striptags }}" class="md-button md-button--primary">
                   快速开始
