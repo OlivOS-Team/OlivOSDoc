@@ -34,17 +34,34 @@
     }
 
     .tx-hero h1 {
+        position: relative;
         margin-bottom: 0;
         font-size: 2.5rem;
         color: currentColor;
-        font-weight: 700
+        font-weight: 700;
+        width: max-content;
     }
 
-    
+    .tx-hero h1::after {
+        content: "";
+        position: absolute;
+        bottom: 0.55rem;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #ffffff00, #ffffffff, #ffffff00);
+        opacity: 0;
+        transform: translateX(-50%);
+        animation: expend 3s cubic-bezier(0, 0, 0, 1) forwards;
+        animation-delay: 0.5s;
+    }
+
     .tx-hero h2 {
+        position: relative;
         font-size: 0.6rem;
         margin-top: 0;
         margin-bottom: 0;
+        width: max-content;
     }
 
     .tx-hero__content {
@@ -263,6 +280,7 @@
 
     .scroll-container p {
         animation: scroll 3s cubic-bezier(0, 0, 0, 1);
+        animation-delay: 0.5s;
         display: block;
         margin: 0 0 0;
     }
@@ -273,6 +291,17 @@
         }
         100% {
           transform: translateY(0%);
+        }
+    }
+
+    @keyframes expend {
+        0% {
+            opacity: 0;
+            width: 0;
+        }
+        100% {
+            width: 100%;
+            opacity: 1;
         }
     }
 </style>
@@ -302,11 +331,6 @@
                     <p>伟大</p>
                     <p>联合</p>
                 </div>
-                <!--
-                <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | striptags }}" class="md-button md-button--primary">
-                  快速开始
-                </a>
-                -->
                 <a href="/User/Intro" title="{{ page.next_page.title | striptags }}" class="md-button md-button--primary">
                   快速开始
                 </a>
