@@ -33,6 +33,7 @@ theme:
     - navigation.indexes
     - navigation.top
     - navigation.expand
+    - navigation.footer
 plugins:
   - search:
       separator: '[\s\u200b\-]'
