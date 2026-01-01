@@ -2,6 +2,8 @@
 
 ## 主动调用插件接口
 
+此案例现在已经内置在[插件模板](https://github.com/OlivOS-Team/OlivOSPluginTemplate)中，如果你没有什么额外想法，可以直接使用
+
 ### 在现版本的OlivOS中如何主动发消息
 首先，OlivOS目前的接口调用需要基于 [OlivOS.API.Event](https://github.com/OlivOS-Team/OlivOS/blob/0d69a9ca63fa7130227891b447885819dc845a01/OlivOS/API.py#L89) 这个类来进行调用，形如你可以在文档中看到的那样：  
 ```python
@@ -71,4 +73,5 @@ OlivOS.API.Event(
 ).send(send_type, target_id, message)
 ```
 你也可以参考这个大量利用了主动调用的插件案例 [OlivOSOnebotV11](https://github.com/lunzhiPenxil/OlivOSOnebotV11/blob/4ec7bb610d3508860e93777d1d98a12e73d1bdfc/OlivOSOnebotV11/eventRouter.py#L227)
+
 
