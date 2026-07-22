@@ -295,6 +295,49 @@ Type : `reply`
 | `cover` | string | -       | 视频封面, 支持http, file和base64发送, 格式必须为jpg  |
 | `c`     | int    | `2` `3` | 通过网络下载视频时的线程数, 默认单线程. (在资源不支持并发时会自动处理) |
 
+### 文件
+
+```json
+{
+    "type": "file",
+    "data": {
+        "file": "1.json",
+        "path": null,
+        "url": null,
+        "name": "1.json",
+        "size": null
+    }
+}
+```
+
+```
+[OP:file,file=1.json,name=1.json]
+```
+
+| 参数名 | 收 | 发 | 可能的值 | 说明 |
+| --- | --- | --- | --- | --- |
+| `file` | ✓ | ✓ | - | 接收时为文件 ID 或文件资源；发送时可为文件路径或 URL |
+| `path` | ✓ | ✓ | - | 文件路径 |
+| `url` | ✓ | ✓ | - | 文件 URL |
+| `name` | ✓ | ✓ | - | 文件名；部分平台可能不支持指定发送后的显示名称 |
+| `size` | ✓ |  | - | 文件大小 |
+
+发送时按 `path`、`url`、`file` 的顺序选择第一个有效的文件资源。
+
+文件资源支持：
+
+- 相对路径或文件名，例如 `1.json`，将从 OlivOS 运行目录下的 `data/files` 目录读取
+- 绝对路径，例如 `C:\Users\Alice\Documents\1.json`
+- [file URI](https://tools.ietf.org/html/rfc8089)，例如 `file:///C:/Users/Alice/Documents/1.json`
+- 网络 URL，例如 `https://example.com/1.json`
+- Base64 编码，例如 `base64://eyJrZXkiOiAidmFsdWUifQ==`
+
+示例：
+
+```
+[OP:file,url=1.json,name=1.json]
+```
+
 ### 猜拳魔法表情
 
 
