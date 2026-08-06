@@ -21,6 +21,7 @@
     "account": [
         {
             "id": 114514,
+            "enable": true,
             "password": "THISISNOTYOURPASSWORD",
             "sdk_type": "kaiheila_link",
             "platform_type": "kaiheila",
@@ -42,6 +43,7 @@
 | 名称 | 类型 | 解释 | 缺省 |
 |:---|:--:|:---|:--:|
 | **id** | number<br/>string | 机器人ID，通常用于机器人进行登录和自我辨识 | - |
+| **enable** | bool | 是否参与启动和登录流程；`false` 时保留配置但不启动该账号；缺省为 `true` | `true` |
 | **platform_type** | string | 消息源平台实际平台<br/>例如`onebot`、`telegram_poll`、`kaiheila_link` | - |
 | **sdk_type** | string | 消息源所基于SDK<br/>例如`qq`、`telegram`、`kaiheila` | - |
 | model_type | string | 消息源所基于模块模式<br/>例如`default` | - |
@@ -58,6 +60,7 @@
 
 这些条目并不是大多数时候都在所有平台都有用，许多平台只需要一些特定的条目，后文将会对这些对应情况进行说明。  
 你需要关注的是`sdk_type`、`platform_type`、`model_type`这些条目，它们将直接决定`OlivOS`对待该条账号配置的模式。  
+`enable`只影响该账号是否参与启动、登录和运行时连接，不会删除账号配置。停用的账号仍会显示在账号管理器中，可以重新启用；旧配置没有此字段时按启用处理。
 
 *PS：通常来说，`OlivOS`会以`id`、`platform_type`、`sdk_type`、三者的组合唯一的确定一个账号实例，并生成一个唯一对应的[哈希值](https://baike.baidu.com/item/%E5%AF%86%E7%A0%81%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0/14937715)，如果你关注日志，你或许会看到它，这在某些插件中是有用的。*
 
