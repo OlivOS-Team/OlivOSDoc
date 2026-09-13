@@ -185,7 +185,7 @@ plugin_event.set_group_kick(group_id, user_id)
 |:--:|:--:|:---|:--:|
 | group_id | ID | 群对象ID | - |
 | user_id | ID | 群成员对象ID | - |
-| rehect_add_request | bool | 是否拉黑对象 | False |
+| reject_add_request | bool | 是否拉黑对象 | False |
 
 
 ### 禁言群成员
@@ -1197,7 +1197,7 @@ class Event(object):
 ```
 
 > 注：  
-> - 消息类型的具体定义请参考[KOOK 官方文档-消息类型](https://developer.kookapp.cn/doc/reference/message)，KMarkdown 语法请参考[KOOK 官方文档-KMarkdown](https://developer.kookapp.cn/doc/kmarkdown)  
+> - 消息类型的具体定义请参考[KOOK 官方文档-消息类型](https://developer.kookapp.cn/doc/http/message)，KMarkdown 语法请参考[KOOK 官方文档-KMarkdown](https://developer.kookapp.cn/doc/kmarkdown)  
 > - 收到的 KMarkdown 消息原文（`raw_content`）可通过`OlivOS.kaiheilaSDK.get_kmarkdown_message_raw`获取  
 > - 日常文本回复使用`plugin_event.send`时，KOOK 的文本模式底层即以消息类型`9`发送，卡片模式以消息类型`10`发送
 
