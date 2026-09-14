@@ -1136,6 +1136,180 @@ plugin_event.get_group_system_msg(count=50)
 > - LLOneBot 的已过滤请求也在此接口查看  
 
 
+### KOOK 平台发送 KMarkdown
+```python
+plugin_event.indeAPI.create_message(chat_type, chat_id, content_type, content)
+```
+用于在 KOOK 平台直接发送 KMarkdown，通过`content_type`指定消息类型，`content`为未经转换的原始内容
+
+> 支持平台：KOOK
+> 
+> 该接口位于`plugin_event.indeAPI`，非通用接口，请在对应平台事件中调用
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| chat_type | str | 发送目标的类型 | - |
+| chat_id | ID | 发送目标的ID | - |
+| content_type | int | 消息类型 | - |
+| content | str | 消息原始内容 | - |
+
+#### 参数规范
+- chat_type
+
+| 内容 | 解释 |
+|:--:|:--:|
+| group | 频道消息 |
+| private | 私聊消息 |
+
+- content_type
+
+| 内容 | 解释 | content 格式 |
+|:--:|:--:|:---|
+| 1 | 文本消息 | 纯文本 |
+| 2 | 图片消息 | 图片资源地址 |
+| 3 | 视频消息 | 视频资源地址 |
+| 8 | 语音消息 | 音频资源地址 |
+| 9 | KMarkdown 消息 | KMarkdown 原文 |
+| 10 | 卡片消息 | 卡片结构 JSON 序列化后的字符串（顶层为数组） |
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| chat_type | str | 发送目标的类型 | None |
+| chat_id | str | 发送目标的ID | None |
+| content_type | int | 实际使用的消息类型 | None |
+| content | str | 发送的内容 | None |
+
+#### 举例
+```python
+#main.py
+class Event(object):
+    def group_message(plugin_event, Proc):
+        if plugin_event.platform['sdk'] == 'kaiheila_link':
+            # 发送一条 KMarkdown 消息
+            plugin_event.indeAPI.create_message(
+                chat_type='group',
+                chat_id=plugin_event.data.group_id,
+                content_type=9,
+                content='**加粗文本** 与 `(met)123456(met)`'
+            )
+```
+
+> 注：  
+> - 消息类型的具体定义请参考[KOOK 官方文档-消息类型](https://developer.kookapp.cn/doc/reference/message)，KMarkdown 语法请参考[KOOK 官方文档-KMarkdown](https://developer.kookapp.cn/doc/kmarkdown)  
+> - 收到的 KMarkdown 消息原文（`raw_content`）可通过`OlivOS.kaiheilaSDK.get_kmarkdown_message_raw`获取  
+> - 日常文本回复使用`plugin_event.send`时，KOOK 的文本模式底层即以消息类型`9`发送，卡片模式以消息类型`10`发送
+
+### 发送 Markdown 消息
+```python
+plugin_event.indeAPI.create_markdown_message(chat_type, chat_id, markdown, msg_id=None, event_id=None, keyboard=None, quote_msg_id=None, force_verify_image_resource=None)
+```
+用于发送 QQ 官方机器人 Markdown 消息，支持原生 Markdown 与模板 Markdown 两种形式
+
+> 支持平台：QQ 官方机器人（`qqGuildv2_link`）
+> 
+> 该接口位于`plugin_event.indeAPI`，非通用接口，请在对应平台事件中调用；发送 Markdown 需要 QQ 官方授予的 Markdown 权限（现已全面开放）
+> 
+> Markdown 消息与按钮的官方规范请参考[QQ 机器人官方文档-Markdown 消息](https://bot.q.qq.com/wiki/develop/api-v2/server-inter/message/type/markdown.html)
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| chat_type | str | 发送目标的类型 | - |
+| chat_id | ID | 发送目标的ID | - |
+| markdown | dict | Markdown 消息结构，见下方`markdown`规范 | - |
+| msg_id | ID | 被动回复的消息ID，与`event_id`互斥 | None |
+| event_id | ID | 被动回复的事件ID，与`msg_id`互斥 | None |
+| keyboard | dict | 消息按钮结构 | None |
+| quote_msg_id | ID | 需要引用回复的消息ID | None |
+| force_verify_image_resource | bool | 强制校验 Markdown 中的图片资源可用性，仅`qq_group`与`qq_private`支持 | None |
+
+#### 参数规范
+- chat_type
+
+| 内容 | 解释 |
+|:--:|:--:|
+| qq_group | QQ群消息 |
+| qq_private | QQ私聊消息 |
+| guild_channel | 频道消息 |
+| guild_private | 频道私聊消息 |
+
+- markdown
+
+QQ 官方 Markdown 消息结构提供了三个默认字段，各自对应：
+
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| content | str | 对应**原生 Markdown**：原生 Markdown 消息内容，与`custom_template_id`二选一 | None |
+| custom_template_id | str | 对应**模板 Markdown**：模板消息的模板ID，与`content`二选一 | None |
+| params | list | 对应**模板 Markdown**：模板消息的模板参数列表，每项形如`{'key': '键名', 'values': ['值', ...]}` | None |
+| force_verify_image_resource | bool | OlivOS 扩展字段（非官方）：同函数参数`force_verify_image_resource`，可在此处传入 | None |
+
+> 注：原生 Markdown 仅使用`content`，模板 Markdown 使用`custom_template_id`加`params`，三种字段的详细格式请参考[QQ 机器人官方文档](https://bot.q.qq.com/wiki/develop/api-v2/server-inter/message/type/markdown.html)
+
+- keyboard
+
+`keyboard`为 QQ 机器人官方按钮组件结构，形如`{'content': {'rows': [{'buttons': [...]}]}}`，其中按钮`action.permission.type`仅支持`0`（指定用户）、`1`（仅管理员）、`2`（所有人），不符合规范时会直接返回错误而不会发起请求；按钮的具体结构请参考[QQ 机器人官方文档-消息按钮](https://bot.q.qq.com/wiki/develop/api-v2/server-inter/message/trans/msg-btn.html)
+
+#### 内置字段工具
+为方便拼接 Markdown 内容，OlivOS 在`OlivOS.qqGuildv2SDK.markdown_tag`中内置了三个字段生成工具，返回值可直接拼入`markdown`的`content`中：
+
+```python
+OlivOS.qqGuildv2SDK.markdown_tag.at_user(user_id)
+```
+生成@指定用户的标签`<qqbot-at-user id="user_id" />`；发送到频道（`guild_channel`/`guild_private`）时框架会自动将其转换为频道格式的`<@!user_id>`
+
+```python
+OlivOS.qqGuildv2SDK.markdown_tag.cmd_enter(text)
+```
+生成进入指令的标签`<qqbot-cmd-enter text="..." />`，用户点击后自动发送指令`text`（`text`会被 URL 转义）
+
+```python
+OlivOS.qqGuildv2SDK.markdown_tag.cmd_input(text, show=None, reference=False)
+```
+生成输入指令的标签`<qqbot-cmd-input text="..." show="..." reference="..." />`，用户点击后在输入框填入指令`text`（会被 URL 转义）；`show`为按钮展示的自定义文案，`reference`为是否以引用消息的形式展示，缺省时分别省略或取`false`
+
+#### 行为说明
+- `markdown`必须提供`content`或`custom_template_id`其中之一，且二者互斥
+- 当`chat_type`为`qq_group`或`qq_private`时，若未显式传入`msg_id`或`event_id`，框架会尝试从当前事件上下文中自动解析被动回复标识，失败后按主动消息发送
+- 当`chat_type`为`guild_channel`或`guild_private`时，框架会自动将消息内容与模板参数中的`<qqbot-at-user id="xx" />`转换为频道格式的`<@!xx>`，`<qqbot-at-everyone />`转换为`@everyone`；频道私聊中不允许@全员，对应标签会被移除
+- 发送失败时会通过日志输出 QQ 开放平台的原始响应（`OlivOS qqGuildv2SDK Markdown message response: HTTP ...`），便于排查权限或内容格式问题
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| active | bool | 发送是否成功 | False |
+| chat_type | str | 发送目标的类型 | None |
+| chat_id | str | 发送目标的ID | None |
+| error | str | 发送失败时的错误原因 | None |
+
+#### 举例
+```python
+#main.py
+import OlivOS
+class Event(object):
+    def group_message(plugin_event, Proc):
+        if (
+            plugin_event.platform['sdk'] == 'qqGuildv2_link'
+            and plugin_event.indeAPI.hasAPI('create_markdown_message')
+        ):
+            content = (
+                '# 标题\n**加粗** 与 '
+                + OlivOS.qqGuildv2SDK.markdown_tag.at_user('123456')
+            )
+            plugin_event.indeAPI.create_markdown_message(
+                chat_type='qq_group',
+                chat_id=plugin_event.data.group_id,
+                markdown={'content': content},
+                msg_id=plugin_event.data.message_id
+            )
+```
+
+> 注：  
+> - 可通过`plugin_event.indeAPI.hasAPI('create_markdown_message')`判断当前平台是否支持该接口  
+> - 模板 Markdown 的模板ID与参数格式由 QQ 开放平台的模板内容决定
+
 ## 举例
 以下为一则在`私聊消息`事件中调用`获取陌生人信息`接口的例子
 ```python
