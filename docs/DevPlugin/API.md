@@ -93,6 +93,27 @@ plugin_event.send(send_type, target_id, message)
 |:--:|:--:|
 | private | 私聊消息 |
 | group | 群聊消息 |
+| webui | 对当前 WebUI 插件页面请求回包，参数语义见下文 |
+
+### WebUI 页面回包
+
+```python
+context = getattr(plugin_event.data, 'webui', None)
+if isinstance(context, dict):
+    plugin_event.send('webui', context['request_id'], {'ok': True, 'text': '处理完成'})
+```
+
+该调用只能在属于当前插件的 WebUI `menu` 事件上下文中使用。
+
+| 参数 | 类型 | 说明 |
+|:--:|:--:|:---|
+| send_type | str | 固定为 `webui` |
+| target_id | str | 必须使用当前请求的 `plugin_event.data.webui['request_id']` |
+| message | JSON 可序列化数据 | 业务回包，例如字典、列表、字符串；不是机器人消息段 |
+
+返回 `True` 表示已将回包投入控制队列，不代表浏览器已经收到。缺少 WebUI 上下文、命名空间或请求 ID 不匹配、没有控制队列时返回 `None`。
+
+宿主按浏览器会话、插件命名空间和请求 ID 路由回包，只将结果交给发出该请求的页面。不要自行复制 `session`、伪造事件或使用此接口广播给所有浏览器。完整前后端用法见 [WebUI 页面开发](WebUI.md)。
 
 
 ### 回复消息
