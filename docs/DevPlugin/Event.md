@@ -486,5 +486,15 @@ class Event(object):
 |:--:|:--:|:---|:--:|
 | namespace | str | 触发菜单的插件命名空间 | - |
 | event | str | 触发菜单的插件事件字段<br/>于插件的`自述文件(app.json)`中指定 | - |
+| webui | dict | 仅网页消息桥接请求附带，包含 `request_id`、`payload` 和宿主管理的 `session` | 无此属性 |
+| payload | JSON 可序列化数据 | 仅网页消息桥接请求附带，等于 `webui['payload']` | 无此属性 |
+
+WebUI 的插件页面交互也复用 `Event.menu`，不是一个名为 `webui` 的新事件回调。此时 `event` 由网页的 `olivos:plugin_event` 消息指定，不要求同时注册到 `menu_config`。
+
+使用 `getattr(plugin_event.data, 'webui', None)` 区分网页交互和普通菜单点击，先检查 `plugin_event.data.namespace` 是否为自己的插件。普通菜单点击（包括 WebUI 插件列表中的菜单按钮）没有网页请求上下文。
+
+网页事件仍然没有机器人上下文，`plugin_event.bot_info` 为 `None`。需要回包时，使用原事件调用 `plugin_event.send('webui', request_id, payload)`，不要使用 `reply()`。`session` 是宿主管理的会话信息，不应写入日志或返回给页面。
+
+完整示例见 [WebUI 页面开发](WebUI.md)。
 
 **该事件一定会按照优先级顺序被调用。**

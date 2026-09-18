@@ -14,10 +14,11 @@ OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同
 
 | 文件名称 | 功能 |
 |:--:|:---|
-| `app.json` | 自述文件，编码应当为`UTF-8` |
+| `app.json` | 自述文件，编码应当为 `UTF-8` 无 BOM |
 | `__init__.py` | 加载入口 |
 | `main.py` | 事件回调入口 |
 | `data` | 资源文件目录 |
+| `webui` | 可选的 WebUI 页面目录，入口通过 `webui_config` 注册 |
 
 ### 自述文件
 
@@ -47,6 +48,13 @@ OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同
             "model" : "all"
         }
     ],
+    "webui_config": [
+        {
+            "title": "插件模板",
+            "type": "iframe",
+            "path": "webui/index.html"
+        }
+    ],
     "menu_config": [
         {
             "title": "插件菜单1",
@@ -74,6 +82,7 @@ OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同
 | message_mode | string | 插件消息模式 |
 | support | list | 插件支持平台开关 |
 | menu_config | list | 插件菜单注册表 |
+| webui_config | list | 可选的 WebUI 页面注册表，可声明内嵌页面或外部链接 |
 
 #### 平台开关
 `support`字段中包含的结构体应当包含如下  
@@ -94,6 +103,21 @@ OlivOS插件通过`importlib`进行动态加载，加载后将具有与OlivOS同
 | title | string | 菜单条目标题 |
 | event | string | 菜单插件事件字段 |
 
+
+#### WebUI 页面注册表
+
+`webui_config` 是可选字段，省略时插件仍可正常加载，但不会在 WebUI 的“插件页面”导航中添加入口。
+
+| 字段 | 类型 | 描述 |
+|:--:|:--:|:---|
+| title | string | 页面导航标题 |
+| type | string | `iframe` 为插件内置页面，`link` 为在新标签页打开的外部链接 |
+| path | string | `iframe` 必填，相对插件根目录，必须以 `webui/` 开头，如 `webui/index.html` |
+| url | string | `link` 必填，只接受 `http://` 或 `https://` URL |
+
+宿主会自动补全所属插件的 `namespace`。修改注册表后需重载插件。页面并不会由核心自动生成，插件应自行提供 HTML、样式与交互逻辑。
+
+完整的页面示例、`Event.menu` 请求处理、回包方法和沙箱限制见 [WebUI 页面开发](WebUI.md)。
 
 ### 加载入口
 
