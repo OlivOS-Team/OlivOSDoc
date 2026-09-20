@@ -142,15 +142,6 @@ HTML 中需有对应的输出节点，例如 `<output id="reply"></output>`。�
 
 沙箱消息发送中使用 `'*'`，并不表示向任意窗口广播：消息发给指定的 `window.parent`，回包也发给指定的 iframe 窗口。宿主验证当前 iframe 的 `source` 和 opaque origin，并绑定插件命名空间；页面仍需检查回包来源与请求 ID。
 
-## 运行与打包
-
-1. 将完整插件目录放入 OlivOS 的 `plugin/app/`，确保 `app.json` 无 BOM，并重载插件。
-2. 登录 [OlivOS WebUI](../User/WebUI.md)，在“插件页面”中选择“插件模板”。
-3. 输入消息，发送后应显示 Python 返回的文本。浏览器预览 HTML 只能验证布局，完整通信必须在宿主中运行。
-4. 打包 `.opk` 时，把 `webui/` 与 `app.json`、`__init__.py`、`main.py` 一同放在压缩包根目录。
-
-官方模板现有 CI 已递归打包整个插件目录，无需新增网页构建步骤。`script/embed_webui.py` 仅用于 OlivOS 核心管理界面，不用于插件网页。
-
 ## 常见问题
 
 | 现象 | 检查项 |
