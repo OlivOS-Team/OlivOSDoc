@@ -67,23 +67,21 @@ WebUI 默认启用，不需要在 `conf/config.json` 中预置 `OlivOS_webUI`。
 
 ### 需要修改时再添加
 
-如果需要修改 WebUI，在现有 `conf/config.json` 中合并下面的配置，再修改所需的值。示例列出的是默认值，**不是启用 WebUI 的必填配置**；不要用此片段覆盖文件中的其他用户设置，已有 `models` 时将 `OlivOS_webUI` 加入该对象即可。
+如果需要修改 WebUI，在现有 `conf/config.json` 中合并下面的配置，再修改所需的值。示例列出的是默认值，**不是启用 WebUI 的必填配置**；不要用此片段覆盖文件中的其他用户设置，已有 `models` 时将 `OlivOS_webUI` 加入该对象即可。注意，**不要删除原有配置里面的 system 键**。
 
 ```json
-{
-    "models": {
-        "OlivOS_webUI": {
-            "enable": true,
-            "server": {
-                "auto": false,
-                "type": "http",
-                "host": "127.0.0.1",
-                "port": 20480,
-                "token_path": "./conf/webui_token.txt",
-                "static_path": "./data/webui/static",
-                "buffer_limit": 500,
-                "plugin_page_cache": 10
-            }
+"models": {
+    "OlivOS_webUI": {
+        "enable": true,
+        "server": {
+            "auto": false,
+            "type": "http",
+            "host": "127.0.0.1",
+            "port": 20480,
+            "token_path": "./conf/webui_token.txt",
+            "static_path": "./data/webui/static",
+            "buffer_limit": 500,
+            "plugin_page_cache": 10
         }
     }
 }
