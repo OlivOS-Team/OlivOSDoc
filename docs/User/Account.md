@@ -542,13 +542,17 @@ QQ官方开放平台的文档可以在[这里](https://bot.q.qq.com/wiki/)找到
 
 | 账号类型 | intents |
 |:---|:---|
-| QQ官方/公域/V2 | GUILDS<br/>DIRECT_MESSAGE<br/>PUBLIC_GUILD_MESSAGES<br/>PUBLIC_QQ_MESSAGES |
-| QQ官方/公域/V2/纯频道 | GUILDS<br/>DIRECT_MESSAGE<br/>PUBLIC_GUILD_MESSAGES |
+| QQ官方/公域/V2 | GUILDS<br/>DIRECT_MESSAGE<br/>PUBLIC_GUILD_MESSAGES<br/>PUBLIC_QQ_MESSAGES<br/>PUBLIC_QQ_GROUP_MEMBERS<br/>GUILD_MEMBERS<br/>GUILD_MESSAGE_REACTIONS<br/>INTERACTION<br/>MESSAGE_AUDIT |
+| QQ官方/公域/V2/纯频道 | GUILDS<br/>DIRECT_MESSAGE<br/>PUBLIC_GUILD_MESSAGES<br/>GUILD_MEMBERS<br/>GUILD_MESSAGE_REACTIONS<br/>INTERACTION<br/>MESSAGE_AUDIT |
 | QQ官方/公域/V2/指定intents | 指定 |
-| QQ官方/私域/V2 | GUILDS<br/>DIRECT_MESSAGE<br/>GUILD_MESSAGES |
+| QQ官方/私域/V2 | GUILDS<br/>DIRECT_MESSAGE<br/>GUILD_MESSAGES<br/>FORUMS_EVENT<br/>GUILD_MEMBERS<br/>GUILD_MESSAGE_REACTIONS<br/>INTERACTION<br/>MESSAGE_AUDIT |
 | QQ官方/私域/V2/指定intents | 指定 |
 
 其中，`QQ官方/公域/V2/指定intents`和`QQ官方/私域/V2/指定intents`可以直接指定`intents`，这可以帮助你更好的规划Bot的部署。  
+普通账号模型已默认订阅 `INTERACTION (1 << 26)`，用于接收按钮和快捷菜单等互动事件。
+使用“指定intents”模型时，需要自行在位掩码中加入该位；框架不会自动补上 `INTERACTION`。
+`PUBLIC_QQ_MESSAGES` 是 `GROUP_AND_C2C_EVENT` 的兼容名称，对应 `1 << 25`；
+QQ 群事件的 `1 << 24` 与 `1 << 25` 在当前实现中会成对订阅。
 
 **固定配置**
 

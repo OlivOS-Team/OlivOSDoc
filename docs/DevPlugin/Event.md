@@ -135,6 +135,8 @@ class Event(object):
 
 ## 通知事件
 
+<a id="button-click"></a>
+
 ### 按钮点击事件
 
 #### 原型
@@ -154,10 +156,13 @@ QQ 官方机器人（`qqGuildv2_link`）的回调按钮（按钮 `action.type=1`
 指令按钮（`action.type=2`）实际发送的文字仍走原来的消息事件。
 按钮的 `action.type` 与收到的互动 `type` 属于不同字段。
 
-框架在后台自动调用 `PUT /interactions/{interaction_id}`，以 `code=0` 确认收到，
-插件只负责业务处理。自动应答不表示插件业务已成功；同一互动只能应答一次，插件不要重复应答。
-同一机器人收到相同互动 ID 时，在现有去重缓存有效期内只投递和应答一次。
-快捷菜单（互动 `type=12`）仍由框架自动应答并留在 SDK 未映射事件缓存中；
+框架在后台安排 `PUT /interactions/{interaction_id}` 应答请求，请求体为 `code=0`。
+安排请求不代表 QQ 已收到应答，网络失败或超时仍可能导致客户端显示操作失败。
+插件只负责业务处理；自动应答也不表示插件业务已成功。同一互动只能应答一次，插件不要重复应答。
+同一机器人收到相同互动 ID 时，在现有去重缓存有效期内只投递一次，最多安排一次自动应答。
+自动应答在每个插件进程内最多使用 8 个工作线程、32 个排队任务；队列已满或线程启动失败时
+不阻塞业务事件投递，跳过该次自动应答并记录警告。排队超过 5 秒的任务会被丢弃，避免继续发送积压的旧应答。
+快捷菜单（互动 `type=12`）也按相同限制安排自动应答，并留在 SDK 未映射事件缓存中；
 其他互动类型不投递为按钮事件，也不会自动应答。
 
 #### 数据
@@ -178,7 +183,7 @@ QQ 官方机器人（`qqGuildv2_link`）的回调按钮（按钮 `action.type=1`
 | chat_id | 对应发送目标的索引；未知场景为 None |
 | interaction_id | 官方事件体 `d.id`，用于互动应答 |
 | event_id | 同 `interaction_id`，供 QQ 群/单聊的被动消息发送使用 |
-| qq_auto_ack | True，表示框架已安排自动应答，不代表网络请求已成功 |
+| qq_auto_ack | True 表示框架已接受自动应答任务，不保证请求最终发出或成功；False 表示队列已满或线程启动失败，任务未被接受 |
 | qq_event_type | `INTERACTION_CREATE` |
 | qq_event_data | 完整官方事件体 `d`；其他官方顶层字段另有 `qq_` 前缀入口 |
 | qq_payload_id | 外层事件包的 id，可能带事件名前缀，应答时不要使用它 |
@@ -186,7 +191,7 @@ QQ 官方机器人（`qqGuildv2_link`）的回调按钮（按钮 `action.type=1`
 未提供的字段保持 None。插件应先核对按钮标识和业务数据，再执行相应操作。
 此事件不含 `message`，不受插件 `message_mode` 影响，仍遵循插件平台过滤、优先级和 `set_block()`。
 
-发送业务处理结果可使用已有的 QQ 专属接口：
+发送业务处理结果可使用已有的 [QQ 专属发送接口](API.md#qqguildv2-send-message)：
 
 ```python
 class Event(object):
@@ -194,10 +199,11 @@ class Event(object):
         if plugin_event.data.button_id != 'confirm':
             return
         context = plugin_event.data.extend
-        if context['chat_type'] is None or context['chat_id'] is None:
+        chat_type, chat_id = context.get('chat_type'), context.get('chat_id')
+        if chat_type is None or chat_id is None:
             return
         plugin_event.indeAPI.send_message(
-            context['chat_type'], context['chat_id'], '已收到按钮操作'
+            chat_type, chat_id, '已收到按钮操作'
         )
 ```
 
