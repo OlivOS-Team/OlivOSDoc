@@ -1273,6 +1273,9 @@ QQ 官方 Markdown 消息结构提供了三个默认字段，各自对应：
 
 `keyboard`为 QQ 机器人官方按钮组件结构，形如`{'content': {'rows': [{'buttons': [...]}]}}`，其中按钮`action.permission.type`仅支持`0`（指定用户）、`1`（仅管理员）、`2`（所有人），不符合规范时会直接返回错误而不会发起请求；按钮的具体结构请参考[QQ 机器人官方文档-消息按钮](https://bot.q.qq.com/wiki/develop/api-v2/server-inter/message/trans/msg-btn.html)
 
+回调按钮（`action.type=1`）通过 [按钮点击事件](Event.md#按钮点击事件) 的 `Event.button_click`
+交给插件处理，框架自动成功应答；指令按钮（`action.type=2`）仍走普通消息事件。
+
 #### 内置字段工具
 为方便拼接 Markdown 内容，OlivOS 在`OlivOS.qqGuildv2SDK.markdown_tag`中内置了三个字段生成工具，返回值可直接拼入`markdown`的`content`中：
 

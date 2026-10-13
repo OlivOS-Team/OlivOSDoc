@@ -135,6 +135,78 @@ class Event(object):
 
 ## 通知事件
 
+### 按钮点击事件
+
+#### 原型
+
+```python
+class Event(object):
+    def button_click(plugin_event, Proc):
+        button_id = plugin_event.data.button_id
+        button_data = plugin_event.data.button_data
+        # 按钮标识与业务数据由发送按钮的插件约定。
+```
+
+#### 描述
+
+QQ 官方机器人（`qqGuildv2_link`）的回调按钮（按钮 `action.type=1`）触发
+`INTERACTION_CREATE`，其中互动 `type=11` 时投递此通知。支持 QQ 群聊、单聊和频道。
+指令按钮（`action.type=2`）实际发送的文字仍走原来的消息事件。
+按钮的 `action.type` 与收到的互动 `type` 属于不同字段。
+
+框架在后台自动调用 `PUT /interactions/{interaction_id}`，以 `code=0` 确认收到，
+插件只负责业务处理。自动应答不表示插件业务已成功；同一互动只能应答一次，插件不要重复应答。
+同一机器人收到相同互动 ID 时，在现有去重缓存有效期内只投递和应答一次。
+快捷菜单（互动 `type=12`）仍由框架自动应答并留在 SDK 未映射事件缓存中；
+其他互动类型不投递为按钮事件，也不会自动应答。
+
+#### 数据
+
+| 成员 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| user_id | ID | 点击者索引：群成员 OpenID、单聊用户 OpenID 或频道用户 ID | None |
+| group_id | ID | QQ 群 OpenID 或频道的子频道 ID；单聊为 None | None |
+| host_id | ID | 频道 ID；QQ 群聊和单聊为 None | None |
+| button_id | str | 发送按钮时设置的 id，平台可能不提供 | None |
+| button_data | str | 发送按钮时设置的 data 原文，不转换为 CQ/OP 消息、不反转义 | None |
+| message_id | ID | 按钮所在消息的 ID，平台可能不提供 | None |
+| extend | dict | 平台上下文与原始事件，详见下表 | {} |
+
+| extend 字段 | 说明 |
+|:---|:---|
+| chat_type | `qq_group`、`qq_private` 或 `guild_channel`；未知场景为 None |
+| chat_id | 对应发送目标的索引；未知场景为 None |
+| interaction_id | 官方事件体 `d.id`，用于互动应答 |
+| event_id | 同 `interaction_id`，供 QQ 群/单聊的被动消息发送使用 |
+| qq_auto_ack | True，表示框架已安排自动应答，不代表网络请求已成功 |
+| qq_event_type | `INTERACTION_CREATE` |
+| qq_event_data | 完整官方事件体 `d`；其他官方顶层字段另有 `qq_` 前缀入口 |
+| qq_payload_id | 外层事件包的 id，可能带事件名前缀，应答时不要使用它 |
+
+未提供的字段保持 None。插件应先核对按钮标识和业务数据，再执行相应操作。
+此事件不含 `message`，不受插件 `message_mode` 影响，仍遵循插件平台过滤、优先级和 `set_block()`。
+
+发送业务处理结果可使用已有的 QQ 专属接口：
+
+```python
+class Event(object):
+    def button_click(plugin_event, Proc):
+        if plugin_event.data.button_id != 'confirm':
+            return
+        context = plugin_event.data.extend
+        if context['chat_type'] is None or context['chat_id'] is None:
+            return
+        plugin_event.indeAPI.send_message(
+            context['chat_type'], context['chat_id'], '已收到按钮操作'
+        )
+```
+
+QQ 群聊和单聊在同一会话发送时会自动使用互动 `d.id` 作为被动发送标识；
+频道按原来的频道发送路径处理。通用 `reply()` 尚未支持此事件。
+使用自定义 intents 的账号需要订阅 `INTERACTION (1 << 26)`；普通账号模型已默认订阅。
+官方载荷与应答要求见 [互动事件](https://bot.q.qq.com/wiki/develop/api-v2/autogen/event/interaction_create.html)
+和 [互动事件响应](https://bot.q.qq.com/wiki/develop/api-v2/autogen/api/interactions_interaction_id.put.html)。
+
 ### 群文件上传事件
 
 #### 原型
