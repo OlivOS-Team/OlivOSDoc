@@ -1222,6 +1222,38 @@ class Event(object):
 > - 收到的 KMarkdown 消息原文（`raw_content`）可通过`OlivOS.kaiheilaSDK.get_kmarkdown_message_raw`获取  
 > - 日常文本回复使用`plugin_event.send`时，KOOK 的文本模式底层即以消息类型`9`发送，卡片模式以消息类型`10`发送
 
+<a id="qqguildv2-send-message"></a>
+
+### QQ 官方机器人发送消息
+
+```python
+plugin_event.indeAPI.send_message(
+    chat_type, chat_id, message, reply_msg_id=None, quote_msg_id=None,
+    flag_log=True, remote=False, event_id=None
+)
+```
+
+支持平台为 QQ 官方机器人（`qqGuildv2_link`）。此接口可在消息事件和
+[按钮点击事件](Event.md#button-click) 中发送普通文本及平台支持的消息段，
+通过 `plugin_event.indeAPI.hasAPI('send_message')` 判断接口是否存在。
+
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| chat_type | str | `qq_group`（QQ 群）、`qq_private`（QQ 单聊）、`guild_channel`（子频道）或 `guild_private`（频道私信） | - |
+| chat_id | ID | 与 `chat_type` 对应的群、用户、子频道或频道私信会话 ID | - |
+| message | MSG | 按插件 `message_mode` 解析的消息；也可传入 `Message_templet` 或 `PARA` 消息段列表 | - |
+| reply_msg_id | ID | 被动回复使用的消息 ID，与 `event_id` 互斥 | None |
+| quote_msg_id | ID | 可见引用所使用的消息 ID | None |
+| flag_log | bool | 是否记录接口调用日志 | True |
+| remote | bool | 远程调用占位参数；True 时返回 None，不执行发送 | False |
+| event_id | ID | QQ 群/单聊被动回复使用的事件 ID，与 `reply_msg_id` 互斥 | None |
+
+QQ 群/单聊未显式传入 `reply_msg_id` 或 `event_id` 时，会从同一会话的事件上下文中尝试获取被动回复标识。
+按钮点击事件使用互动 `d.id`；无法获取标识时按主动消息发送。
+频道按原来的频道发送路径处理，不使用 `event_id`。
+接口返回包含 `active` 和 `data` 的结果字典；`active` 表示发送结果，错误信息位于 `data.error`。
+发送 Markdown 和按钮组件仍使用下面的 `create_markdown_message` 接口。
+
 ### 发送 Markdown 消息
 ```python
 plugin_event.indeAPI.create_markdown_message(chat_type, chat_id, markdown, msg_id=None, event_id=None, keyboard=None, quote_msg_id=None, force_verify_image_resource=None)
@@ -1272,6 +1304,10 @@ QQ 官方 Markdown 消息结构提供了三个默认字段，各自对应：
 - keyboard
 
 `keyboard`为 QQ 机器人官方按钮组件结构，形如`{'content': {'rows': [{'buttons': [...]}]}}`，其中按钮`action.permission.type`仅支持`0`（指定用户）、`1`（仅管理员）、`2`（所有人），不符合规范时会直接返回错误而不会发起请求；按钮的具体结构请参考[QQ 机器人官方文档-消息按钮](https://bot.q.qq.com/wiki/develop/api-v2/server-inter/message/trans/msg-btn.html)
+
+回调按钮（`action.type=1`）通过 [按钮点击事件](Event.md#button-click) 的 `Event.button_click`
+交给插件处理，框架在后台安排 `code=0` 应答请求，不保证请求发出或成功；
+网络失败、超时或应答任务被丢弃时仍可能未应答。指令按钮（`action.type=2`）仍走普通消息事件。
 
 #### 内置字段工具
 为方便拼接 Markdown 内容，OlivOS 在`OlivOS.qqGuildv2SDK.markdown_tag`中内置了三个字段生成工具，返回值可直接拼入`markdown`的`content`中：
