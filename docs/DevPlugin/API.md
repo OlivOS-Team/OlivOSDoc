@@ -1250,13 +1250,13 @@ plugin_event.indeAPI.send_message(
 
 QQ 群/单聊未显式传入 `reply_msg_id` 或 `event_id` 时，会从同一会话的事件上下文中尝试获取被动回复标识。
 按钮点击事件使用互动 `d.id`；无法获取标识时按主动消息发送。
-频道按原来的频道发送路径处理，不使用 `event_id`。
+当 QQ 群/单聊消息同时包含文字（含@）和图片时，框架会将整条消息转换为 Markdown 发送；纯文字、纯图片及频道消息仍沿用原有发送路径。Markdown 图片上传失败或图片超过素材接口的 10 MB 限制时，会记录降级日志并回退到原有图文发送流程。频道按原来的频道发送路径处理，不使用 `event_id`。
 接口返回包含 `active` 和 `data` 的结果字典；`active` 表示发送结果，错误信息位于 `data.error`。
-发送 Markdown 和按钮组件仍使用下面的 `create_markdown_message` 接口。
+手动发送 Markdown 和按钮组件仍使用下面的 `create_markdown_message` 接口。
 
 ### 发送 Markdown 消息
 ```python
-plugin_event.indeAPI.create_markdown_message(chat_type, chat_id, markdown, msg_id=None, event_id=None, keyboard=None, quote_msg_id=None, force_verify_image_resource=None)
+plugin_event.indeAPI.create_markdown_message(chat_type, chat_id, markdown, msg_id=None, event_id=None, keyboard=None, quote_msg_id=None, force_verify_image_resource=None, local_images=None)
 ```
 用于发送 QQ 官方机器人 Markdown 消息，支持原生 Markdown 与模板 Markdown 两种形式
 
@@ -1277,6 +1277,18 @@ plugin_event.indeAPI.create_markdown_message(chat_type, chat_id, markdown, msg_i
 | keyboard | dict | 消息按钮结构 | None |
 | quote_msg_id | ID | 需要引用回复的消息ID | None |
 | force_verify_image_resource | bool | 强制校验 Markdown 中的图片资源可用性，仅`qq_group`与`qq_private`支持 | None |
+| local_images | dict | 本地图片映射，键为 Markdown 中的图片名称，值为 OlivOS 图片资源路径；仅`qq_group`与`qq_private`支持 | None |
+
+使用本地图片时，在原生 Markdown 的 `content` 中以 `{{名称}}` 标记插入位置，并在 `local_images` 中提供同名路径。框架读取图片尺寸、上传图片素材并将标记替换为带宽高的 QQ Markdown 图片引用。相对路径遵循 OlivOS 资源规则，从运行目录的 `data/images/` 下解析；也支持绝对路径以及框架支持的 `file://`、`base64://` 和 `data:` 资源。
+
+```python
+plugin_event.indeAPI.create_markdown_message(
+    chat_type='qq_group',
+    chat_id=plugin_event.data.group_id,
+    markdown={'content': '# 今日结果\n\n{{封面}}'},
+    local_images={'封面': 'reports/today.png'}
+)
+```
 
 #### 参数规范
 - chat_type
@@ -1329,6 +1341,9 @@ OlivOS.qqGuildv2SDK.markdown_tag.cmd_input(text, show=None, reference=False)
 
 #### 行为说明
 - `markdown`必须提供`content`或`custom_template_id`其中之一，且二者互斥
+- `local_images`仅适用于原生 Markdown `content`；每个字典键都必须在内容中有对应的 `{{名称}}` 标记。单张图片最大 10 MB，支持 PNG、JPEG、GIF 和 WebP，文件扩展名必须与图片格式一致
+- 同一次发送中内容相同的本地图片只上传一次；Markdown 发送成功后立即删除临时素材。明确发送失败时清理素材；发送结果因超时或服务端错误无法确认时保留素材，避免已发送消息中的图片引用失效
+- 本地图片读取或上传失败、图片超过 10 MB，或 Markdown 请求收到明确拒绝响应时，框架会记录原因并将整条消息回退为原有图文发送；回退失败时返回发送失败，不会静默丢弃图片。网络超时或服务端错误导致发送结果不确定时不会重发，并保留临时素材
 - 当`chat_type`为`qq_group`或`qq_private`时，若未显式传入`msg_id`或`event_id`，框架会尝试从当前事件上下文中自动解析被动回复标识，失败后按主动消息发送
 - 当`chat_type`为`guild_channel`或`guild_private`时，框架会自动将消息内容与模板参数中的`<qqbot-at-user id="xx" />`转换为频道格式的`<@!xx>`，`<qqbot-at-everyone />`转换为`@everyone`；频道私聊中不允许@全员，对应标签会被移除
 - 发送失败时会通过日志输出 QQ 开放平台的原始响应（`OlivOS qqGuildv2SDK Markdown message response: HTTP ...`），便于排查权限或内容格式问题
