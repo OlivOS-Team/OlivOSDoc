@@ -1253,6 +1253,7 @@ QQ 群/单聊未显式传入 `reply_msg_id` 或 `event_id` 时，会从同一会
 当 QQ 群/单聊消息同时包含文字（含@）和图片时，框架会将整条消息转换为 Markdown 发送；纯文字、纯图片及频道消息仍沿用原有发送路径。Markdown 图片上传失败或图片超过素材接口的 10 MB 限制时，会记录降级日志并回退到原有图文发送流程。频道按原来的频道发送路径处理，不使用 `event_id`。
 接口返回包含 `active` 和 `data` 的结果字典；`active` 表示发送结果，错误信息位于 `data.error`。
 手动发送 Markdown 和按钮组件仍使用下面的 `create_markdown_message` 接口。
+群聊/单聊图文卡片使用下面的 `create_card_message` 接口。
 
 ### 发送 Markdown 消息
 ```python
@@ -1381,6 +1382,101 @@ class Event(object):
 > 注：  
 > - 可通过`plugin_event.indeAPI.hasAPI('create_markdown_message')`判断当前平台是否支持该接口  
 > - 模板 Markdown 的模板ID与参数格式由 QQ 开放平台的模板内容决定
+
+<a id="qqguildv2-create-card-message"></a>
+
+### 发送图文卡片消息
+```python
+plugin_event.indeAPI.create_card_message(chat_type, chat_id, card, msg_id=None, event_id=None, keyboard=None, quote_msg_id=None, force_active=False)
+```
+用于在 QQ 官方机器人的群聊、单聊场景发送图文卡片（官方 `msg_type=8`）
+
+> 支持平台：QQ 官方机器人（`qqGuildv2_link`）
+>
+> 该接口位于`plugin_event.indeAPI`，非通用接口，请在对应平台事件中调用
+>
+> 官方于 2026-10-28 开放群聊/单聊图文卡片。当前卡片类型仅支持`tuwen`。频道场景不支持此接口。
+>
+> 官方请求体请参考[发送群聊消息](https://bot.q.qq.com/wiki/develop/api-v2/autogen/api/v2_groups_group_openid_messages.post.html)与[发送单聊消息](https://bot.q.qq.com/wiki/develop/api-v2/autogen/api/v2_users_user_openid_messages.post.html)
+
+#### 函数原型
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| chat_type | str | 发送目标的类型 | - |
+| chat_id | ID | 发送目标的ID | - |
+| card | dict | 图文卡片结构，见下方`card`规范 | - |
+| msg_id | ID | 被动回复的消息ID，与`event_id`互斥 | None |
+| event_id | ID | 被动回复的事件ID，与`msg_id`互斥 | None |
+| keyboard | dict | 消息按钮结构，规范同`create_markdown_message` | None |
+| quote_msg_id | ID | 需要引用回复的消息ID | None |
+| force_active | bool | 强制按主动消息发送，不可与`msg_id`或`event_id`同时传入 | False |
+
+#### 参数规范
+- chat_type
+
+| 内容 | 解释 |
+|:--:|:--:|
+| qq_group | QQ群消息 |
+| qq_private | QQ私聊消息 |
+
+- card
+
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| type | str | 卡片类型，当前仅`tuwen`（图文卡片）；省略时框架补为`tuwen` | tuwen |
+| content | dict | 卡片内容，`type=tuwen`时必须包含下列字段 | - |
+
+`content`在`type=tuwen`时的字段：
+
+| 参数 | 类型 | 解释 |
+|:--:|:--:|:---|
+| title | str | 标题，1-50 个字符 |
+| description | str | 描述，1-200 个字符 |
+| url | str | 点击跳转链接，必须为`https`，长度不超过 1024 个字符 |
+| pic_url | str | 封面图链接，必须为`https`，长度不超过 1024 个字符 |
+
+#### 行为说明
+- 仅`qq_group`与`qq_private`可用；`guild_channel`/`guild_private`会直接返回错误，不会发起请求
+- `card`会在发送前深拷贝，调用方随后修改原字典不会影响已发出的请求体
+- 字段长度、`https` 链接或未知`type`不符合规范时，会在本地返回错误，不会发起请求
+- 未显式传入`msg_id`或`event_id`时，框架会尝试从当前事件上下文中自动解析被动回复标识，失败后按主动消息发送
+- `force_active=True`时不会携带被动回复标识，适用于主动触达
+- 被动回复被平台判定为过期或无效时，框架会按既有规则清除`msg_id`/`event_id`后尝试主动发送
+- 可通过`plugin_event.indeAPI.hasAPI('create_card_message')`判断当前平台是否支持该接口
+
+#### 返回值
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| active | bool | 发送是否成功 | False |
+| chat_type | str | 发送目标的类型 | None |
+| chat_id | str | 发送目标的ID | None |
+| message_id | ID | 发送成功时的消息ID | None |
+| error | str | 发送失败时的错误原因 | None |
+
+#### 举例
+```python
+#main.py
+class Event(object):
+    def group_message(plugin_event, Proc):
+        if (
+            plugin_event.platform['sdk'] == 'qqGuildv2_link'
+            and plugin_event.indeAPI.hasAPI('create_card_message')
+        ):
+            plugin_event.indeAPI.create_card_message(
+                chat_type='qq_group',
+                chat_id=plugin_event.data.group_id,
+                card={
+                    'type': 'tuwen',
+                    'content': {
+                        'title': '今日天气预报',
+                        'description': '深圳 多云转晴 24°C~32°C，紫外线强，注意防晒',
+                        'url': 'https://example.com/weather',
+                        'pic_url': 'https://example.com/weather.png'
+                    }
+                },
+                msg_id=plugin_event.data.message_id
+            )
+```
 
 ## 举例
 以下为一则在`私聊消息`事件中调用`获取陌生人信息`接口的例子
