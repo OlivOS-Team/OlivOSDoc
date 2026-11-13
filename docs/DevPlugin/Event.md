@@ -62,6 +62,7 @@
 |:---|:---|:---|:--:|
 | Proc_data | dict | 进程数据信息 | - |
 | Proc_data['bot_info_dict'] | list | 登录账号信息<br/>其中key为bot的hash<br/>value为类型为OlivOS.API.bot_info_T的机器人信息 | - |
+| `Proc_data['qqGuildv2_self_openid']` | dict | 机器人在群内的 OpenID，key 为 bot 的 hash。<br/>**仅 QQ 官方机器人（qqGuildv2）有值**，其他平台不会出现这一项。<br/>机器人在一个群都没有、或从未成功取回过时为**空字典**；有过群请求并成功取回后才有值。 | `{}` |
 
 调用接口请参考[插件接口 -> 进程接口](/OlivOS_DevDoc_Plugin_API/#_3)章节。
 
@@ -101,6 +102,33 @@ class Event(object):
 | raw_message | MSG | 依照插件所制定的类型转换后的消息源内容 | - |
 | raw_message_sdk | MSG | 由平台所接收的消息源格式 | - |
 
+##### extend 字段
+
+> `extend` 由各平台适配器按需填充，字段集合不保证跨平台一致。**取不到时该键不存在，取值请使用 `.get()`**；`qq_<字段>` 属动态项，只在该字段出现在载荷里时存在。
+
+跨平台常用（多个适配器会写，但不是每个平台都有）：
+
+| 字段 | 说明 |
+|:---|:---|
+| `sub_self_id` | 机器人自身在该平台的 ID（QQ 为 20 位数字，其它平台格式不同） |
+| `flag_from_direct` | 是否直发场景（私聊 / 频道私聊） |
+| `host_group_id` | 上层容器 ID（频道 ID 等）；群聊为 None |
+| `reply_msg_id` | 本条消息的平台 id，被动回复用 |
+| `group_id` | 会话索引；语义随平台不同（QQ 群为群 OpenID，discord 为子频道 ID） |
+
+QQ 官方机器人（qqGuildv2）专属：
+
+| 字段 | 说明 |
+|:---|:---|
+| `flag_from_qq` | 恒为 True |
+| `sub_self_open_id` | 机器人**在该群**的 OpenID |
+| `qq_event_type` / `qq_event_data` | 事件名 / 官方 `d` 原文 |
+| `qq_at_bot` / `qq_at_bot_known` | 是否 @ 机器人 / 该判断是否可信（全量消息事件下可能是 None） |
+| `qq_raw_content` | 原始 content |
+| `qq_reference_message_id` | 引用消息 id |
+| `qq_face_data` / `qq_attachment_segments` / `qq_ark_data` / `qq_message_scene_ext` / `qq_msg_idx` / `qq_ref_msg_idx` | 各类载荷解析结果 |
+| `qq_<字段>` | 官方 `d` 顶层字段镜像，动态项 |
+
 
 ### 群聊消息事件
 
@@ -130,6 +158,33 @@ class Event(object):
 | message_id | ID | 消息索引 | - |
 | raw_message | MSG | 依照插件所制定的类型转换后的消息源内容 | - |
 | raw_message_sdk | MSG | 由平台所接收的消息源格式 | - |
+
+##### extend 字段
+
+> `extend` 由各平台适配器按需填充，字段集合不保证跨平台一致。**取不到时该键不存在，取值请使用 `.get()`**；`qq_<字段>` 属动态项，只在该字段出现在载荷里时存在。
+
+跨平台常用（多个适配器会写，但不是每个平台都有）：
+
+| 字段 | 说明 |
+|:---|:---|
+| `sub_self_id` | 机器人自身在该平台的 ID（QQ 为 20 位数字，其它平台格式不同） |
+| `flag_from_direct` | 是否直发场景（私聊 / 频道私聊） |
+| `host_group_id` | 上层容器 ID（频道 ID 等）；群聊为 None |
+| `reply_msg_id` | 本条消息的平台 id，被动回复用 |
+| `group_id` | 会话索引；语义随平台不同（QQ 群为群 OpenID，discord 为子频道 ID） |
+
+QQ 官方机器人（qqGuildv2）专属：
+
+| 字段 | 说明 |
+|:---|:---|
+| `flag_from_qq` | 恒为 True |
+| `sub_self_open_id` | 机器人**在该群**的 OpenID |
+| `qq_event_type` / `qq_event_data` | 事件名 / 官方 `d` 原文 |
+| `qq_at_bot` / `qq_at_bot_known` | 是否 @ 机器人 / 该判断是否可信（全量消息事件下可能是 None） |
+| `qq_raw_content` | 原始 content |
+| `qq_reference_message_id` | 引用消息 id |
+| `qq_face_data` / `qq_attachment_segments` / `qq_ark_data` / `qq_message_scene_ext` / `qq_msg_idx` / `qq_ref_msg_idx` | 各类载荷解析结果 |
+| `qq_<字段>` | 官方 `d` 顶层字段镜像，动态项 |
 
 
 
