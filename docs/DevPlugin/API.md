@@ -397,9 +397,14 @@ plugin_event.get_friend_list()
 
 ### 获取群信息
 ```python
-plugin_event.get_group_info()
+plugin_event.get_group_info(group_id)
 ```
 用于获取群信息
+
+#### 参数
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | str/int | 群号 | - |
 
 #### 返回值
 | 参数 | 类型 | 解释 | 缺省 |
@@ -421,9 +426,15 @@ plugin_event.get_group_list()
 
 ### 获取群成员信息
 ```python
-plugin_event.get_group_member_info()
+plugin_event.get_group_member_info(group_id, user_id)
 ```
-用于获取群信息
+用于获取群成员信息
+
+#### 参数
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | str/int | 群号 | - |
+| user_id | str/int | 要查询的成员账号 | - |
 
 #### 返回值
 | 参数 | 类型 | 解释 | 缺省 |
@@ -433,9 +444,14 @@ plugin_event.get_group_member_info()
 
 ### 获取群成员列表
 ```python
-plugin_event.get_group_member_list()
+plugin_event.get_group_member_list(group_id)
 ```
-用于获取群列表
+用于获取群成员列表
+
+#### 参数
+| 参数 | 类型 | 解释 | 缺省 |
+|:--:|:--:|:---|:--:|
+| group_id | str/int | 群号 | - |
 
 #### 返回值
 | 参数 | 类型 | 解释 | 缺省 |

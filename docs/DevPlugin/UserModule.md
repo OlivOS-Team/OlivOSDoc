@@ -335,7 +335,7 @@ class Event(object):
          Proc.database.set_group_config("PluginNameSpace", "test", data, "qq", "114514", None, pkl=True)
          # id使用数字和字符串是等效的
          test_data = Proc.database.get_group_config("PluginNameSpace", "test", "qq", 114514, None, pkl=True)
-         proc.log(0, str(test_data))
+         Proc.log(0, str(test_data))
          # 可以得到结果
          # [2024-xx-xx xx:xx:xx] - [DEBUG] - {'aaa': 114514, 'bbb': 1919810}
 ~~~
