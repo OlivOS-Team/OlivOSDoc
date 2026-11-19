@@ -4,10 +4,15 @@
 
 ## 在 `main.Event` 声明任务
 
+示例的单次任务按需启用：在启动 OlivOS 前，将示例自己的环境变量 `EXAMPLE_MAINTENANCE_AT` 设置为**晚于插件加载时刻**的本地日期和时间（例如使用 `YYYY-MM-DDTHH:MM:SS` 格式，不带时区或 UTC 偏移）。这里的本地时间按[宿主调度时区](../User/WebUI.md#plugin-schedule-timezone)解释；没有设置该变量时，只注册两个周期任务。
+
 ```python
+import os
 from datetime import datetime
 
 from OlivOS import scheduleAPI
+
+maintenance_at = os.getenv('EXAMPLE_MAINTENANCE_AT')
 
 
 class Event:
@@ -21,10 +26,11 @@ class Event:
     def cleanup(Proc):
         Proc.log(2, '清理过期数据')
 
-    @staticmethod
-    @scheduleAPI.date(id='maintenance', run_at=datetime(2027, 1, 15, 4, 0))
-    def maintenance(Proc):
-        Proc.log(2, '执行一次维护')
+    if maintenance_at:
+        @staticmethod
+        @scheduleAPI.date(id='maintenance', run_at=datetime.fromisoformat(maintenance_at))
+        def maintenance(Proc):
+            Proc.log(2, '执行一次维护')
 ```
 
 `@staticmethod` 放外层。回调是同步函数，只接收 `Proc`；上面的日志调用可替换为插件自己的维护操作。`id` 由 1–64 个 ASCII 字母、数字或 `_.-` 组成，在本插件命名空间内唯一。不同插件可以使用同一个 ID。同一插件重复声明一个 ID 时，冲突的任务不会启用。
