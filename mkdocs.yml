@@ -76,6 +76,7 @@ nav:
     - 插件开发:
       - 插件模板: DevPlugin/Template.md
       - WebUI 页面: DevPlugin/WebUI.md
+      - 插件定时任务: DevPlugin/Schedule.md
       - 框架事件: DevPlugin/Event.md
       - 插件接口: DevPlugin/API.md
       - 消息格式: DevPlugin/Message.md

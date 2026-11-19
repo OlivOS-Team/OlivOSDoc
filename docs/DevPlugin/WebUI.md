@@ -281,4 +281,4 @@ window.addEventListener('message', (event) => {
 | 页面 404 | 包内是否包含注册入口及其资源；路径、文件名和大小写是否一致；目录入口是否包含 `index.html`；资源是否超出注册范围；仅 OPK 失败时检查核心版本和资源释放日志 |
 | 页面可见但请求超时 | 是否从宿主侧栏打开；事件名和命名空间是否一致；插件是否回包；请求 ID 是否匹配 |
 | 普通菜单报属性错误 | 使用 `getattr` 检查 `webui` 和 `payload`，不要假定每个菜单事件都来自网页 |
-| 原生 GUI 菜单不能用 | 原生 GUI 不会自动变成网页，需要自行编写页面和 Python 处理逻辑 |
+| 原生 GUI 菜单不能用 | 原生 GUI 不会自动转换为插件网页。Windows 本机可对已审核菜单使用[旧版 Tk 只读预览](../User/WebUI.md#legacy-tk-preview)；新功能仍建议使用 `webui_config` 提供网页。 |
